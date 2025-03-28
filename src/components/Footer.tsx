@@ -1,6 +1,6 @@
 
 import React from "react";
-import { ChevronUp, Github, Linkedin, Mail, MapPin } from "lucide-react";
+import { ChevronUp, Github, Linkedin, Mail, MapPin, Instagram } from "lucide-react";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -42,14 +42,14 @@ const Footer = () => {
               Email
             </a>
             <a
-              href="https://github.com/"
+              href="https://github.com/tzikos"
               className="text-muted-foreground hover:text-foreground transition-colors flex items-center"
             >
               <Github className="mr-1 h-4 w-4" />
               GitHub
             </a>
             <a
-              href="https://linkedin.com/"
+              href="https://www.linkedin.com/in/dimitris-papantzikos/"
               className="text-muted-foreground hover:text-foreground transition-colors flex items-center"
             >
               <Linkedin className="mr-1 h-4 w-4" />
