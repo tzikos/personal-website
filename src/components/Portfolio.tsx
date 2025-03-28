@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import { ArrowRight, BarChart, Code, ExternalLink } from "lucide-react";
 
@@ -8,21 +7,21 @@ const dataProjects = [
     title: "Plant Leaf Health Classification",
     description: "MLOps project with model training and deployment on Google Cloud (VertexAI, Cloud Run) using FastAPI, Streamlit, Docker, and GitHub Actions.",
     tags: ["Python", "MLOps", "Google Cloud", "Docker", "CI/CD"],
-    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=80&w=1000",
+    image: "https://images.unsplash.com/photo-1635322966219-b75ed372eb01?auto=format&fit=crop&q=80&w=1000",
   },
   {
     id: 2,
     title: "Patient Mortality Classification",
     description: "Deep Learning project using EHRMamba model on Physionet2012 dataset, achieving 85% accuracy with PyTorch and HPC/GPU resources.",
     tags: ["Deep Learning", "PyTorch", "Healthcare", "HPC"],
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1000",
+    image: "https://images.unsplash.com/photo-1631563019676-daaac8124ece?auto=format&fit=crop&q=80&w=1000",
   },
   {
     id: 3,
     title: "Copenhagen Apartments Price Prediction",
     description: "Built a neural network model using PyTorch to predict rental prices with a Mean Absolute Error of 2000 DKK.",
     tags: ["Neural Networks", "PyTorch", "Regression", "Real Estate"],
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000",
+    image: "https://images.unsplash.com/photo-1513407030348-c983a97b98d8?auto=format&fit=crop&q=80&w=1000",
   },
 ];
 
@@ -32,21 +31,21 @@ const workExperience = [
     title: "Data & Research Analyst at Recognvte",
     description: "End-to-end reporting, automations with Python web scraping, NLP processing, and machine learning model development (AVM).",
     tags: ["Remote", "09/2023-Present", "SQL", "Python", "ML"],
-    image: "https://images.unsplash.com/photo-1486718448742-163732cd1544?auto=format&fit=crop&q=80&w=1000",
+    image: "https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&q=80&w=1000",
   },
   {
     id: 5,
     title: "Data Analyst at Data to Action",
     description: "Data gathering (SQL, web scraping), manipulation, visualization (Tableau), and forecasting (scikit-learn).",
     tags: ["Athens", "11/2022-08/2023", "BI", "Forecasting"],
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1000",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000",
   },
   {
     id: 6,
     title: "Athens Tableau User Group",
     description: "Delivered an educational presentation for the Tableau user community, sharing data visualization best practices.",
     tags: ["Talk", "Teaching", "03/2024", "Volunteering"],
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=1000",
+    image: "https://images.unsplash.com/photo-1558008258-3256797b43f3?auto=format&fit=crop&q=80&w=1000",
   },
 ];
 

@@ -51,14 +51,14 @@ const About = () => {
                 </p>
                 
                 <div className="flex flex-wrap gap-3 mb-8">
-                  <span className="badge border-primary/20 bg-primary/5 text-primary-foreground">Python</span>
-                  <span className="badge border-primary/20 bg-primary/5 text-primary-foreground">SQL</span>
-                  <span className="badge border-primary/20 bg-primary/5 text-primary-foreground">Tableau</span>
-                  <span className="badge border-primary/20 bg-primary/5 text-primary-foreground">Machine Learning</span>
-                  <span className="badge border-primary/20 bg-primary/5 text-primary-foreground">Google Cloud</span>
-                  <span className="badge border-primary/20 bg-primary/5 text-primary-foreground">Docker</span>
-                  <span className="badge border-primary/20 bg-primary/5 text-primary-foreground">R</span>
-                  <span className="badge border-primary/20 bg-primary/5 text-primary-foreground">Git/GitHub</span>
+                  <span className="badge border-primary/20 bg-primary/5 text-primary">Python</span>
+                  <span className="badge border-primary/20 bg-primary/5 text-primary">SQL</span>
+                  <span className="badge border-primary/20 bg-primary/5 text-primary">Tableau</span>
+                  <span className="badge border-primary/20 bg-primary/5 text-primary">Machine Learning</span>
+                  <span className="badge border-primary/20 bg-primary/5 text-primary">Google Cloud</span>
+                  <span className="badge border-primary/20 bg-primary/5 text-primary">Docker</span>
+                  <span className="badge border-primary/20 bg-primary/5 text-primary">R</span>
+                  <span className="badge border-primary/20 bg-primary/5 text-primary">Git/GitHub</span>
                 </div>
               </div>
             </div>
