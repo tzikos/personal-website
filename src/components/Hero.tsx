@@ -45,19 +45,19 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto text-center">
           <div className="animate-on-scroll opacity-0 transition-opacity duration-1000 delay-300">
             <span className="badge bg-secondary text-secondary-foreground mb-4 animate-slide-down">
-              Data Analyst & Photographer
+              Data Analyst & Mathematics Graduate
             </span>
           </div>
           
           <h1 className="animate-on-scroll opacity-0 transition-opacity duration-1000 text-4xl md:text-6xl lg:text-7xl font-semibold tracking-tight mb-6">
-            <span className="block mb-2">Alex Morgan</span>
+            <span className="block mb-2">Dimitris Papantzikos</span>
             <span className="text-2xl md:text-3xl lg:text-4xl font-normal text-muted-foreground">
-              Translating data into insights & moments into memories
+              Translating data into actionable insights
             </span>
           </h1>
           
           <p className="animate-on-scroll opacity-0 transition-opacity duration-1000 delay-500 text-lg md:text-xl text-muted-foreground mt-6 mb-10 max-w-2xl mx-auto">
-            Where analytical precision meets creative vision. I help businesses derive meaningful insights from data while capturing moments that tell compelling stories.
+            I specialize in Data Science, combining analytical expertise with mathematical precision to transform complex datasets into meaningful business solutions.
           </p>
           
           <div className="animate-on-scroll opacity-0 transition-opacity duration-1000 delay-700 flex flex-col sm:flex-row justify-center gap-4 mt-8">

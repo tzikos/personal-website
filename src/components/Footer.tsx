@@ -1,6 +1,6 @@
 
 import React from "react";
-import { ChevronUp } from "lucide-react";
+import { ChevronUp, Github, Linkedin, Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -23,55 +23,50 @@ const Footer = () => {
           </button>
           
           <div className="text-center mb-8">
-            <h3 className="text-xl font-medium mb-2">Alex Morgan</h3>
+            <h3 className="text-xl font-medium mb-2">Dimitris Papantzikos</h3>
             <p className="text-muted-foreground">
-              Data Analyst & Photographer
+              Data Analyst & Mathematics Graduate
             </p>
+            <div className="flex items-center justify-center mt-2 text-muted-foreground">
+              <MapPin className="h-4 w-4 mr-1" />
+              <span>Copenhagen, Denmark</span>
+            </div>
           </div>
           
           <div className="flex space-x-6 mb-8">
             <a
-              href="#"
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              href="mailto:papantzikos12@gmail.com"
+              className="text-muted-foreground hover:text-foreground transition-colors flex items-center"
             >
+              <Mail className="mr-1 h-4 w-4" /> 
+              Email
+            </a>
+            <a
+              href="https://github.com/"
+              className="text-muted-foreground hover:text-foreground transition-colors flex items-center"
+            >
+              <Github className="mr-1 h-4 w-4" />
+              GitHub
+            </a>
+            <a
+              href="https://linkedin.com/"
+              className="text-muted-foreground hover:text-foreground transition-colors flex items-center"
+            >
+              <Linkedin className="mr-1 h-4 w-4" />
               LinkedIn
             </a>
             <a
-              href="#"
+              href="tel:+4591628719"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
-              Twitter
-            </a>
-            <a
-              href="#"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Instagram
-            </a>
-            <a
-              href="#"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              GitHub
+              +45 91 62 87 19
             </a>
           </div>
           
           <div className="text-center text-sm text-muted-foreground">
-            <p>&copy; {new Date().getFullYear()} Alex Morgan. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Dimitris Papantzikos. All rights reserved.</p>
             <p className="mt-1">
-              <a
-                href="#"
-                className="hover:text-foreground transition-colors"
-              >
-                Privacy Policy
-              </a>{" "}
-              •{" "}
-              <a
-                href="#"
-                className="hover:text-foreground transition-colors"
-              >
-                Terms of Service
-              </a>
+              Mathematics | Data Science | Machine Learning
             </p>
           </div>
         </div>

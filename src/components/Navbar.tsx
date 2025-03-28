@@ -49,7 +49,7 @@ const Navbar = () => {
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
         >
-          Alex Morgan
+          Dimitris Papantzikos
         </a>
 
         {/* Desktop navigation */}
@@ -72,17 +72,17 @@ const Navbar = () => {
               scrollToSection("data");
             }}
           >
-            Data Analysis
+            Projects
           </a>
           <a
-            href="#photography"
+            href="#experience"
             className="nav-link"
             onClick={(e) => {
               e.preventDefault();
-              scrollToSection("photography");
+              scrollToSection("experience");
             }}
           >
-            Photography
+            Experience
           </a>
           <a
             href="#contact"
@@ -132,17 +132,17 @@ const Navbar = () => {
               scrollToSection("data");
             }}
           >
-            Data Analysis
+            Projects
           </a>
           <a
-            href="#photography"
+            href="#experience"
             className="py-2 border-b border-gray-100 dark:border-gray-800"
             onClick={(e) => {
               e.preventDefault();
-              scrollToSection("photography");
+              scrollToSection("experience");
             }}
           >
-            Photography
+            Experience
           </a>
           <a
             href="#contact"
