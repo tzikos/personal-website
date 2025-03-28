@@ -7,21 +7,21 @@ const dataProjects = [
     title: "Plant Leaf Health Classification",
     description: "MLOps project with model training and deployment on Google Cloud (VertexAI, Cloud Run) using FastAPI, Streamlit, Docker, and GitHub Actions.",
     tags: ["Python", "MLOps", "Google Cloud", "Docker", "CI/CD"],
-    image: "https://images.unsplash.com/photo-1635322966219-b75ed372eb01?auto=format&fit=crop&q=80&w=1000",
+    image: "/lovable-uploads/66250694-5eff-4b35-bca4-eed7980b647d.png",
   },
   {
     id: 2,
     title: "Patient Mortality Classification",
     description: "Deep Learning project using EHRMamba model on Physionet2012 dataset, achieving 85% accuracy with PyTorch and HPC/GPU resources.",
     tags: ["Deep Learning", "PyTorch", "Healthcare", "HPC"],
-    image: "https://images.unsplash.com/photo-1631563019676-daaac8124ece?auto=format&fit=crop&q=80&w=1000",
+    image: "/lovable-uploads/7de6f91c-62f6-49d9-87a4-0bb34ff95a03.png",
   },
   {
     id: 3,
     title: "Copenhagen Apartments Price Prediction",
     description: "Built a neural network model using PyTorch to predict rental prices with a Mean Absolute Error of 2000 DKK.",
     tags: ["Neural Networks", "PyTorch", "Regression", "Real Estate"],
-    image: "https://images.unsplash.com/photo-1513407030348-c983a97b98d8?auto=format&fit=crop&q=80&w=1000",
+    image: "/lovable-uploads/cf34e9cd-b118-40d2-8572-8928cba35708.png",
   },
 ];
 
