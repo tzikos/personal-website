@@ -1,10 +1,19 @@
-
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Mail, MapPin, Phone, Send, Linkedin, Github, Instagram } from "lucide-react";
+import { supabase } from '@/config/supabase';
+import { toast } from 'sonner';
 
 const Contact = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -25,6 +34,45 @@ const Contact = () => {
       elements?.forEach((el) => observer.unobserve(el));
     };
   }, []);
+
+  useEffect(() => {
+  }, []);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.id]: e.target.value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const { data, error } = await supabase
+        .from('contacts')
+        .insert([{
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          subject: formData.subject.trim(),
+          message: formData.message.trim()
+        }])
+        .select();
+
+      if (error) {
+        throw error;
+      }
+
+      toast.success('Thank you for your message! I will get back to you soon.');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      
+    } catch (error: any) {
+      toast.error(error?.message || 'Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section
@@ -48,7 +96,7 @@ const Contact = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             <div className="animate-on-scroll opacity-0 transition-opacity duration-700 delay-300">
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium">
@@ -57,6 +105,8 @@ const Contact = () => {
                     <input
                       id="name"
                       type="text"
+                      value={formData.name}
+                      onChange={handleChange}
                       className="w-full px-4 py-3 rounded-md border border-input bg-background text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                       placeholder="Your name"
                     />
@@ -68,6 +118,8 @@ const Contact = () => {
                     <input
                       id="email"
                       type="email"
+                      value={formData.email}
+                      onChange={handleChange}
                       className="w-full px-4 py-3 rounded-md border border-input bg-background text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                       placeholder="Your email"
                     />
@@ -81,6 +133,8 @@ const Contact = () => {
                   <input
                     id="subject"
                     type="text"
+                    value={formData.subject}
+                    onChange={handleChange}
                     className="w-full px-4 py-3 rounded-md border border-input bg-background text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                     placeholder="What's this about?"
                   />
@@ -93,6 +147,8 @@ const Contact = () => {
                   <textarea
                     id="message"
                     rows={5}
+                    value={formData.message}
+                    onChange={handleChange}
                     className="w-full px-4 py-3 rounded-md border border-input bg-background text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring resize-none"
                     placeholder="Your message..."
                   ></textarea>
@@ -100,9 +156,11 @@ const Contact = () => {
                 
                 <button
                   type="submit"
+                  disabled={isSubmitting}
                   className="w-full px-4 py-3 bg-primary text-primary-foreground rounded-md flex items-center justify-center hover:bg-primary/90 transition-colors duration-300"
                 >
-                  <Send className="mr-2 h-4 w-4" /> Send Message
+                  <Send className="mr-2 h-4 w-4" />
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             </div>
