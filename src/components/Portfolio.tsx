@@ -9,7 +9,7 @@ const dataProjects = [
     description: "MLOps project with model training and deployment on Google Cloud (VertexAI, Cloud Run) using FastAPI, Streamlit, Docker, and GitHub Actions.",
     detailedDescription: "This project leverages deep learning techniques to identify plant diseases from leaf images. I built a complete MLOps pipeline with automated CI/CD using GitHub Actions, containerized the application with Docker, and deployed it on Google Cloud. The system includes a Streamlit frontend for easy interaction and a FastAPI backend for efficient inference.",
     tags: ["Python", "MLOps", "Google Cloud", "Docker", "CI/CD"],
-    image: "/lovable-uploads/7de6f91c-62f6-49d9-87a4-0bb34ff95a03.png",
+    image: "/images/7de6f91c-62f6-49d9-87a4-0bb34ff95a03.png",
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const dataProjects = [
     description: "Deep Learning project using EHRMamba model on Physionet2012 dataset, achieving 85% accuracy with PyTorch and HPC/GPU resources.",
     detailedDescription: "I implemented and fine-tuned an EHRMamba model to predict patient mortality from electronic health records. The project involved processing time-series medical data, implementing custom loss functions, and leveraging DTU's high-performance computing cluster to efficiently train deep neural networks with large datasets.",
     tags: ["Deep Learning", "PyTorch", "Healthcare", "HPC"],
-    image: "/lovable-uploads/cf34e9cd-b118-40d2-8572-8928cba35708.png",
+    image: "/images/cf34e9cd-b118-40d2-8572-8928cba35708.png",
   },
   {
     id: 3,
@@ -25,16 +25,16 @@ const dataProjects = [
     description: "Built a neural network model using PyTorch to predict rental prices with a Mean Absolute Error of 2000 DKK.",
     detailedDescription: "This regression project focused on predicting apartment rental prices in Copenhagen using features like location, size, and amenities. I engineered custom features, performed data cleaning and normalization, and developed a neural network architecture optimized for pricing predictions with strong real-world performance.",
     tags: ["Neural Networks", "PyTorch", "Regression", "Real Estate"],
-    image: "/lovable-uploads/66250694-5eff-4b35-bca4-eed7980b647d.png",
+    image: "/images/66250694-5eff-4b35-bca4-eed7980b647d.png",
   },
 ];
 
 const workExperience = [
   {
     id: 4,
-    title: "Data & Research Analyst at Recognvte",
+    title: "Data & Research Analyst at Recognyte",
     description: "End-to-end reporting, automations with Python web scraping, NLP processing, and machine learning model development (AVM).",
-    detailedDescription: "At Recognvte, I lead end-to-end data analytics projects from data collection to actionable insights. My work includes building automated valuation models (AVMs), creating ETL pipelines for financial data processing, and developing interactive dashboards for decision-makers. I've also implemented NLP solutions to extract insights from unstructured text data.",
+    detailedDescription: "At Recognyte, I lead end-to-end data analytics projects from data collection to actionable insights. My work includes building automated valuation models (AVMs), creating ETL pipelines for financial data processing, and developing interactive dashboards for decision-makers. I've also implemented NLP solutions to extract insights from unstructured text data.",
     tags: ["Remote", "09/2023-Present", "SQL", "Python", "ML"],
     image: "https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&q=80&w=1000",
   },
@@ -164,7 +164,9 @@ const Portfolio = () => {
                 </p>
               </div>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/dimitris-papantzikos/details/projects/"
+                target="_blank" // This opens the link in a new tab
+                rel="noopener noreferrer" // This is a security best practice
                 className="hidden md:inline-flex items-center text-sm font-medium px-4 py-2 rounded-md border hover:bg-secondary transition-colors"
               >
                 View All Projects <ExternalLink className="ml-1 h-4 w-4" />
@@ -185,7 +187,9 @@ const Portfolio = () => {
             
             <div className="mt-10 flex justify-center md:hidden">
               <a
-                href="#"
+                href="https://www.linkedin.com/in/dimitris-papantzikos/details/projects/"
+                target="_blank" // This opens the link in a new tab
+                rel="noopener noreferrer" // This is a security best practice
                 className="inline-flex items-center text-sm font-medium px-4 py-2 rounded-md border hover:bg-secondary transition-colors"
               >
                 View All Projects <ExternalLink className="ml-1 h-4 w-4" />
@@ -215,11 +219,12 @@ const Portfolio = () => {
                 </p>
               </div>
               <a
-                href="#"
-                className="hidden md:inline-flex items-center text-sm font-medium px-4 py-2 rounded-md border hover:bg-secondary transition-colors"
-              >
-                Download CV <ExternalLink className="ml-1 h-4 w-4" />
-              </a>
+              href="/CV2025_Dimitris_Papantzikos.pdf" // Replace with the actual URL of your CV
+              className="hidden md:inline-flex items-center text-sm font-medium px-4 py-2 rounded-md border hover:bg-secondary transition-colors"
+              download // This attribute prompts the browser to download the file
+            >
+              Download CV <ExternalLink className="ml-1 h-4 w-4" />
+            </a>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -236,7 +241,7 @@ const Portfolio = () => {
             
             <div className="mt-10 flex justify-center md:hidden">
               <a
-                href="#"
+                href="/CV2025_Dimitris_Papantzikos.pdf"
                 className="inline-flex items-center text-sm font-medium px-4 py-2 rounded-md border hover:bg-secondary transition-colors"
               >
                 Download CV <ExternalLink className="ml-1 h-4 w-4" />

@@ -212,6 +212,8 @@ const Contact = () => {
                   <div className="flex space-x-4">
                     <a
                       href="https://www.linkedin.com/in/dimitris-papantzikos/"
+                      target="_blank" // This opens the link in a new tab
+                      rel="noopener noreferrer" // This is a security best practice
                       className="h-10 w-10 rounded-full flex items-center justify-center bg-white dark:bg-gray-800 hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
                       aria-label="LinkedIn"
                     >
@@ -219,6 +221,8 @@ const Contact = () => {
                     </a>
                     <a
                       href="https://www.instagram.com/dpadventures"
+                      target="_blank" // This opens the link in a new tab
+                      rel="noopener noreferrer" // This is a security best practice
                       className="h-10 w-10 rounded-full flex items-center justify-center bg-white dark:bg-gray-800 hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
                       aria-label="Instagram"
                     >
@@ -226,6 +230,8 @@ const Contact = () => {
                     </a>
                     <a
                       href="https://github.com/tzikos"
+                      target="_blank" // This opens the link in a new tab
+                      rel="noopener noreferrer" // This is a security best practice
                       className="h-10 w-10 rounded-full flex items-center justify-center bg-white dark:bg-gray-800 hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
                       aria-label="GitHub"
                     >

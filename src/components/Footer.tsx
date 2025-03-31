@@ -36,6 +36,8 @@ const Footer = () => {
           <div className="flex space-x-6 mb-8">
             <a
               href="mailto:papantzikos12@gmail.com"
+              target="_blank" // This opens the link in a new tab
+              rel="noopener noreferrer" // This is a security best practice
               className="text-muted-foreground hover:text-foreground transition-colors flex items-center"
             >
               <Mail className="mr-1 h-4 w-4" /> 
@@ -43,6 +45,8 @@ const Footer = () => {
             </a>
             <a
               href="https://github.com/tzikos"
+              target="_blank" // This opens the link in a new tab
+              rel="noopener noreferrer" // This is a security best practice
               className="text-muted-foreground hover:text-foreground transition-colors flex items-center"
             >
               <Github className="mr-1 h-4 w-4" />
@@ -50,6 +54,8 @@ const Footer = () => {
             </a>
             <a
               href="https://www.linkedin.com/in/dimitris-papantzikos/"
+              target="_blank" // This opens the link in a new tab
+              rel="noopener noreferrer" // This is a security best practice
               className="text-muted-foreground hover:text-foreground transition-colors flex items-center"
             >
               <Linkedin className="mr-1 h-4 w-4" />
@@ -57,6 +63,8 @@ const Footer = () => {
             </a>
             <a
               href="tel:+4591628719"
+              target="_blank" // This opens the link in a new tab
+              rel="noopener noreferrer" // This is a security best practice
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               +45 91 62 87 19
