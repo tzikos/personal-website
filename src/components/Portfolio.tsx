@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ArrowRight, BarChart, Code, ExternalLink } from "lucide-react";
 import ProjectDetailDialog from "./ProjectDetailDialog";
+import { Presentation } from "lucide-react"; // Adjust the import based on your icon library
 
 const dataProjects = [
   {
@@ -36,7 +37,7 @@ const workExperience = [
     description: "End-to-end reporting, automations with Python web scraping, NLP processing, and machine learning model development (AVM).",
     detailedDescription: "At Recognyte, I lead end-to-end data analytics projects from data collection to actionable insights. My work includes building automated valuation models (AVMs), creating ETL pipelines for financial data processing, and developing interactive dashboards for decision-makers. I've also implemented NLP solutions to extract insights from unstructured text data.",
     tags: ["Remote", "09/2023-Present", "SQL", "Python", "ML"],
-    image: "https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&q=80&w=1000",
+    image: "/images/recognyte.png",
   },
   {
     id: 5,
@@ -44,15 +45,26 @@ const workExperience = [
     description: "Data gathering (SQL, web scraping), manipulation, visualization (Tableau), and forecasting (scikit-learn).",
     detailedDescription: "At Data to Action, I specialized in transforming raw data into business insights through advanced analytics and visualization. I created demand forecasting models for retail clients, built automated data reporting systems, and developed web scraping solutions for market intelligence gathering.",
     tags: ["Athens", "11/2022-08/2023", "BI", "Forecasting"],
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000",
+    image: "images/action.jpg",
   },
+  // {
+  //   id: 6,
+  //   title: "Athens Tableau User Group",
+  //   description: "Delivered an educational presentation for the Tableau user community, sharing data visualization best practices.",
+  //   detailedDescription: "I presented advanced visualization techniques and best practices to the Athens Tableau user community, demonstrating how to effectively communicate complex data insights. The presentation covered creating interactive dashboards, optimizing for performance, and design principles for clear data storytelling.",
+  //   tags: ["Talk", "Teaching", "03/2024", "Volunteering"],
+  //   image: "images/tableau.jpeg",
+  // },
+];
+
+const talks = [
   {
     id: 6,
     title: "Athens Tableau User Group",
     description: "Delivered an educational presentation for the Tableau user community, sharing data visualization best practices.",
     detailedDescription: "I presented advanced visualization techniques and best practices to the Athens Tableau user community, demonstrating how to effectively communicate complex data insights. The presentation covered creating interactive dashboards, optimizing for performance, and design principles for clear data storytelling.",
     tags: ["Talk", "Teaching", "03/2024", "Volunteering"],
-    image: "https://images.unsplash.com/photo-1558008258-3256797b43f3?auto=format&fit=crop&q=80&w=1000",
+    image: "images/tableau.jpeg",
   },
 ];
 
@@ -246,6 +258,41 @@ const Portfolio = () => {
               >
                 Download CV <ExternalLink className="ml-1 h-4 w-4" />
               </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="talks"
+        className="py-20 md:py-28 bg-white dark:bg-gray-950"
+      >
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="flex items-center justify-between mb-12">
+              <div className="max-w-2xl">
+                <span className="badge bg-secondary text-secondary-foreground mb-4">
+                  Talks
+                </span>
+                <h2 className="section-heading flex items-center">
+                  <Presentation className="mr-2 h-8 w-8" /> Sharing Knowledge
+                </h2>
+                <p className="text-muted-foreground text-lg">
+                  Engaging with the community through talks and presentations.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {talks.map((talk, index) => (
+                <div
+                  key={talk.id}
+                  className="animate-on-scroll opacity-0 transition-opacity duration-700"
+                  style={{ transitionDelay: `${index * 200}ms` }}
+                >
+                  <ProjectCard project={talk} />
+                </div>
+              ))}
             </div>
           </div>
         </div>
