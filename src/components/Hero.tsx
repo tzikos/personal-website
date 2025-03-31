@@ -45,7 +45,7 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto text-center">
           <div className="animate-on-scroll opacity-0 transition-opacity duration-1000 delay-300">
             <span className="badge bg-secondary text-secondary-foreground mb-4 animate-slide-down">
-              Data Analyst & Mathematics Graduate
+              Data Analyst & Freelance Photographer
             </span>
           </div>
           
@@ -57,7 +57,7 @@ const Hero = () => {
           </h1>
           
           <p className="animate-on-scroll opacity-0 transition-opacity duration-1000 delay-500 text-lg md:text-xl text-muted-foreground mt-6 mb-10 max-w-2xl mx-auto">
-            I specialize in Data Science, combining analytical expertise with mathematical precision to transform complex datasets into meaningful business solutions.
+            I specialize in Data Science, combining latest technologies with an analytical mindset to transform complex datasets into meaningful business solutions.
           </p>
           
           <div className="animate-on-scroll opacity-0 transition-opacity duration-1000 delay-700 flex flex-col sm:flex-row justify-center gap-4 mt-8">

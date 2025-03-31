@@ -25,7 +25,7 @@ const Footer = () => {
           <div className="text-center mb-8">
             <h3 className="text-xl font-medium mb-2">Dimitris Papantzikos</h3>
             <p className="text-muted-foreground">
-              Data Analyst & Mathematics Graduate
+              Data Analyst & Freelance Photographer
             </p>
             <div className="flex items-center justify-center mt-2 text-muted-foreground">
               <MapPin className="h-4 w-4 mr-1" />
@@ -63,8 +63,6 @@ const Footer = () => {
             </a>
             <a
               href="tel:+4591628719"
-              target="_blank" // This opens the link in a new tab
-              rel="noopener noreferrer" // This is a security best practice
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               +45 91 62 87 19

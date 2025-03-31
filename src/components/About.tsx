@@ -1,6 +1,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { Database, Code, Activity, LineChart, BookOpen, Award } from "lucide-react";
+import { MessageCircle } from "lucide-react"; // Adjust the import based on your icon library
 
 const About = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -41,13 +42,21 @@ const About = () => {
                   About Me
                 </span>
                 <h2 className="section-heading">
-                  Mathematics & Data Science Enthusiast
+                  Life Enthusiast
                 </h2>
                 <p className="text-muted-foreground text-lg mb-6">
-                  I'm a Data Analyst with a strong mathematical background, currently pursuing an M.Sc. in Mathematical Modelling and Computation at DTU in Copenhagen, Denmark. My professional journey combines analytical rigor with practical data engineering solutions.
+                  I'm a Data Analyst with a mathematical background, currently pursuing an M.Sc. in Mathematical Modelling and Computation at DTU in Copenhagen, Denmark, with a focus on Machine Learning and AI. My professional journey mostly combines data visualizations and effective storytelling to deliver actionable insights, but also ad-hoc solutions to engineering problems.
                 </p>
                 <p className="text-muted-foreground text-lg mb-8">
-                  When I'm not analyzing data, you'll find me engaged in sports like calisthenics, marathons, and kickboxing, or exploring the outdoors through hiking and camping. Photography is another passion that helps me capture and share the world from a different perspective.
+                  Usually you'll find me engaged in sports like calisthenics, weightlifting, running, kickboxing, judo or exploring the outdoors through hiking and camping. Photography is another passion that helps me capture and share the world from a different perspective and I invite you to take a look at my Instagram
+                  <a 
+                    href="https://www.instagram.com/dpadventures" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-primary hover:underline"
+                  >
+                   <b>portfolio</b>
+                  </a>.
                 </p>
                 
                 <div className="flex flex-wrap gap-3 mb-8">
@@ -92,10 +101,10 @@ const About = () => {
                 </div>
                 
                 <div className="glass-card p-6 hover-lift">
-                  <Activity className="h-10 w-10 text-amber-500 mb-4" />
-                  <h3 className="text-xl font-medium mb-2">Forecasting</h3>
+                  <MessageCircle className="h-10 w-10 text-amber-500 mb-4" /> 
+                  <h3 className="text-xl font-medium mb-2">Communication</h3> 
                   <p className="text-muted-foreground">
-                    Applying statistical methods to predict trends and patterns in data.
+                    Specializing in effective communication to convey complex data insights to non-tech-savvy stakeholders, ensuring clarity and understanding.
                   </p>
                 </div>
               </div>
