@@ -1,26 +1,29 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import { ArrowRight, BarChart, Code, ExternalLink } from "lucide-react";
+import ProjectDetailDialog from "./ProjectDetailDialog";
 
 const dataProjects = [
   {
     id: 1,
     title: "Plant Leaf Health Classification",
     description: "MLOps project with model training and deployment on Google Cloud (VertexAI, Cloud Run) using FastAPI, Streamlit, Docker, and GitHub Actions.",
+    detailedDescription: "This project leverages deep learning techniques to identify plant diseases from leaf images. I built a complete MLOps pipeline with automated CI/CD using GitHub Actions, containerized the application with Docker, and deployed it on Google Cloud. The system includes a Streamlit frontend for easy interaction and a FastAPI backend for efficient inference.",
     tags: ["Python", "MLOps", "Google Cloud", "Docker", "CI/CD"],
-    image: "/lovable-uploads/cf34e9cd-b118-40d2-8572-8928cba35708.png",
+    image: "/lovable-uploads/7de6f91c-62f6-49d9-87a4-0bb34ff95a03.png",
   },
   {
     id: 2,
     title: "Patient Mortality Classification",
     description: "Deep Learning project using EHRMamba model on Physionet2012 dataset, achieving 85% accuracy with PyTorch and HPC/GPU resources.",
+    detailedDescription: "I implemented and fine-tuned an EHRMamba model to predict patient mortality from electronic health records. The project involved processing time-series medical data, implementing custom loss functions, and leveraging DTU's high-performance computing cluster to efficiently train deep neural networks with large datasets.",
     tags: ["Deep Learning", "PyTorch", "Healthcare", "HPC"],
-    image: "/lovable-uploads/7de6f91c-62f6-49d9-87a4-0bb34ff95a03.png",
+    image: "/lovable-uploads/cf34e9cd-b118-40d2-8572-8928cba35708.png",
   },
   {
     id: 3,
     title: "Copenhagen Apartments Price Prediction",
     description: "Built a neural network model using PyTorch to predict rental prices with a Mean Absolute Error of 2000 DKK.",
+    detailedDescription: "This regression project focused on predicting apartment rental prices in Copenhagen using features like location, size, and amenities. I engineered custom features, performed data cleaning and normalization, and developed a neural network architecture optimized for pricing predictions with strong real-world performance.",
     tags: ["Neural Networks", "PyTorch", "Regression", "Real Estate"],
     image: "/lovable-uploads/66250694-5eff-4b35-bca4-eed7980b647d.png",
   },
@@ -31,6 +34,7 @@ const workExperience = [
     id: 4,
     title: "Data & Research Analyst at Recognvte",
     description: "End-to-end reporting, automations with Python web scraping, NLP processing, and machine learning model development (AVM).",
+    detailedDescription: "At Recognvte, I lead end-to-end data analytics projects from data collection to actionable insights. My work includes building automated valuation models (AVMs), creating ETL pipelines for financial data processing, and developing interactive dashboards for decision-makers. I've also implemented NLP solutions to extract insights from unstructured text data.",
     tags: ["Remote", "09/2023-Present", "SQL", "Python", "ML"],
     image: "https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&q=80&w=1000",
   },
@@ -38,6 +42,7 @@ const workExperience = [
     id: 5,
     title: "Data Analyst at Data to Action",
     description: "Data gathering (SQL, web scraping), manipulation, visualization (Tableau), and forecasting (scikit-learn).",
+    detailedDescription: "At Data to Action, I specialized in transforming raw data into business insights through advanced analytics and visualization. I created demand forecasting models for retail clients, built automated data reporting systems, and developed web scraping solutions for market intelligence gathering.",
     tags: ["Athens", "11/2022-08/2023", "BI", "Forecasting"],
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000",
   },
@@ -45,6 +50,7 @@ const workExperience = [
     id: 6,
     title: "Athens Tableau User Group",
     description: "Delivered an educational presentation for the Tableau user community, sharing data visualization best practices.",
+    detailedDescription: "I presented advanced visualization techniques and best practices to the Athens Tableau user community, demonstrating how to effectively communicate complex data insights. The presentation covered creating interactive dashboards, optimizing for performance, and design principles for clear data storytelling.",
     tags: ["Talk", "Teaching", "03/2024", "Volunteering"],
     image: "https://images.unsplash.com/photo-1558008258-3256797b43f3?auto=format&fit=crop&q=80&w=1000",
   },
@@ -55,6 +61,7 @@ interface ProjectCardProps {
     id: number;
     title: string;
     description: string;
+    detailedDescription?: string;
     tags: string[];
     image: string;
   };
@@ -63,35 +70,44 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, className }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
 
   return (
-    <div className={`glass-card overflow-hidden group hover-lift ${className}`}>
-      <div className="aspect-video relative overflow-hidden">
-        <img
-          src={project.image}
-          alt={project.title}
-          className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 image-fade-in ${imageLoaded ? 'loaded' : ''}`}
-          onLoad={() => setImageLoaded(true)}
-        />
-      </div>
-      <div className="p-6">
-        <h3 className="text-xl font-medium mb-2">{project.title}</h3>
-        <p className="text-muted-foreground mb-4">{project.description}</p>
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.tags.map((tag, i) => (
-            <span key={i} className="badge text-xs bg-secondary text-secondary-foreground">
-              {tag}
-            </span>
-          ))}
+    <>
+      <div className={`glass-card overflow-hidden group hover-lift ${className}`}>
+        <div className="aspect-video relative overflow-hidden">
+          <img
+            src={project.image}
+            alt={project.title}
+            className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 image-fade-in ${imageLoaded ? 'loaded' : ''}`}
+            onLoad={() => setImageLoaded(true)}
+          />
         </div>
-        <a
-          href="#"
-          className="inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors"
-        >
-          View Details <ArrowRight className="ml-1 h-4 w-4" />
-        </a>
+        <div className="p-6">
+          <h3 className="text-xl font-medium mb-2">{project.title}</h3>
+          <p className="text-muted-foreground mb-4">{project.description}</p>
+          <div className="flex flex-wrap gap-2 mb-4">
+            {project.tags.map((tag, i) => (
+              <span key={i} className="badge text-xs bg-secondary text-secondary-foreground">
+                {tag}
+              </span>
+            ))}
+          </div>
+          <button
+            onClick={() => setShowDetails(true)}
+            className="inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+          >
+            View Details <ArrowRight className="ml-1 h-4 w-4" />
+          </button>
+        </div>
       </div>
-    </div>
+      
+      <ProjectDetailDialog
+        project={project}
+        open={showDetails}
+        onOpenChange={setShowDetails}
+      />
+    </>
   );
 };
 
