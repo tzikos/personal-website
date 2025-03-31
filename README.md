@@ -1,7 +1,7 @@
 # My personal website
 
 ## Project info
-
+```
 # Step 1: Navigate to the project directory.
 cd <YOUR_PROJECT_NAME>
 
