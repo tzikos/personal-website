@@ -10,7 +10,7 @@ const dataProjects = [
     description: "MLOps project with model training and deployment on Google Cloud (VertexAI, Cloud Run) using FastAPI, Streamlit, Docker, and GitHub Actions.",
     detailedDescription: "This project leverages deep learning techniques to identify plant diseases from leaf images. I built a complete MLOps pipeline with automated CI/CD using GitHub Actions, containerized the application with Docker, and deployed it on Google Cloud. The system includes a Streamlit frontend for easy interaction and a FastAPI backend for efficient inference.",
     tags: ["Python", "MLOps", "Google Cloud", "Docker", "CI/CD"],
-    image: "/images/7de6f91c-62f6-49d9-87a4-0bb34ff95a03.png",
+    image: "/images/plants.png",
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const dataProjects = [
     description: "Deep Learning project using EHRMamba model on Physionet2012 dataset, achieving 85% accuracy with PyTorch and HPC/GPU resources.",
     detailedDescription: "I implemented and fine-tuned an EHRMamba model to predict patient mortality from electronic health records. The project involved processing time-series medical data, implementing custom loss functions, and leveraging DTU's high-performance computing cluster to efficiently train deep neural networks with large datasets.",
     tags: ["Deep Learning", "PyTorch", "Healthcare", "HPC"],
-    image: "/images/cf34e9cd-b118-40d2-8572-8928cba35708.png",
+    image: "/images/patient.png",
   },
   {
     id: 3,
@@ -26,7 +26,7 @@ const dataProjects = [
     description: "Built a neural network model using PyTorch to predict rental prices with a Mean Absolute Error of 2000 DKK.",
     detailedDescription: "This regression project focused on predicting apartment rental prices in Copenhagen using features like location, size, and amenities. I engineered custom features, performed data cleaning and normalization, and developed a neural network architecture optimized for pricing predictions with strong real-world performance.",
     tags: ["Neural Networks", "PyTorch", "Regression", "Real Estate"],
-    image: "/images/66250694-5eff-4b35-bca4-eed7980b647d.png",
+    image: "/images/cph.png",
   },
 ];
 
