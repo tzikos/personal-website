@@ -85,6 +85,16 @@ const Navbar = () => {
             Experience
           </a>
           <a
+            href="#gallery"
+            className="nav-link"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("gallery");
+            }}
+          >
+            Gallery
+          </a>
+          <a
             href="#contact"
             className="nav-link"
             onClick={(e) => {
@@ -143,6 +153,16 @@ const Navbar = () => {
             }}
           >
             Experience
+          </a>
+          <a
+            href="#gallery"
+            className="py-2 border-b border-gray-100 dark:border-gray-800"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("gallery");
+            }}
+          >
+            Gallery
           </a>
           <a
             href="#contact"
