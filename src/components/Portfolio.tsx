@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ArrowRight, BarChart, Code, ExternalLink } from "lucide-react";
 import ProjectDetailDialog from "./ProjectDetailDialog";
-import { Presentation } from "lucide-react"; // Adjust the import based on your icon library
+import { Presentation } from "lucide-react"; 
+import Gallery from "./Gallery"; // Import the new Gallery component
 
 const dataProjects = [
   {
@@ -47,14 +48,6 @@ const workExperience = [
     tags: ["Athens", "11/2022-08/2023", "BI", "Forecasting"],
     image: "images/action.jpg",
   },
-  // {
-  //   id: 6,
-  //   title: "Athens Tableau User Group",
-  //   description: "Delivered an educational presentation for the Tableau user community, sharing data visualization best practices.",
-  //   detailedDescription: "I presented advanced visualization techniques and best practices to the Athens Tableau user community, demonstrating how to effectively communicate complex data insights. The presentation covered creating interactive dashboards, optimizing for performance, and design principles for clear data storytelling.",
-  //   tags: ["Talk", "Teaching", "03/2024", "Volunteering"],
-  //   image: "images/tableau.jpeg",
-  // },
 ];
 
 const talks = [
@@ -177,8 +170,8 @@ const Portfolio = () => {
               </div>
               <a
                 href="https://www.linkedin.com/in/dimitris-papantzikos/details/projects/"
-                target="_blank" // This opens the link in a new tab
-                rel="noopener noreferrer" // This is a security best practice
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hidden md:inline-flex items-center text-sm font-medium px-4 py-2 rounded-md border hover:bg-secondary transition-colors"
               >
                 View All Projects <ExternalLink className="ml-1 h-4 w-4" />
@@ -200,8 +193,8 @@ const Portfolio = () => {
             <div className="mt-10 flex justify-center md:hidden">
               <a
                 href="https://www.linkedin.com/in/dimitris-papantzikos/details/projects/"
-                target="_blank" // This opens the link in a new tab
-                rel="noopener noreferrer" // This is a security best practice
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center text-sm font-medium px-4 py-2 rounded-md border hover:bg-secondary transition-colors"
               >
                 View All Projects <ExternalLink className="ml-1 h-4 w-4" />
@@ -231,12 +224,12 @@ const Portfolio = () => {
                 </p>
               </div>
               <a
-              href="/CV2025_Dimitris_Papantzikos.pdf" // Replace with the actual URL of your CV
-              className="hidden md:inline-flex items-center text-sm font-medium px-4 py-2 rounded-md border hover:bg-secondary transition-colors"
-              download // This attribute prompts the browser to download the file
-            >
-              Download CV <ExternalLink className="ml-1 h-4 w-4" />
-            </a>
+                href="/CV2025_Dimitris_Papantzikos.pdf"
+                className="hidden md:inline-flex items-center text-sm font-medium px-4 py-2 rounded-md border hover:bg-secondary transition-colors"
+                download
+              >
+                Download CV <ExternalLink className="ml-1 h-4 w-4" />
+              </a>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -255,6 +248,7 @@ const Portfolio = () => {
               <a
                 href="/CV2025_Dimitris_Papantzikos.pdf"
                 className="inline-flex items-center text-sm font-medium px-4 py-2 rounded-md border hover:bg-secondary transition-colors"
+                download
               >
                 Download CV <ExternalLink className="ml-1 h-4 w-4" />
               </a>
@@ -297,6 +291,9 @@ const Portfolio = () => {
           </div>
         </div>
       </section>
+
+      {/* Add the Gallery section here */}
+      <Gallery />
     </>
   );
 };
