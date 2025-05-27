@@ -30,8 +30,10 @@ class ChatAPITester:
                 print(f"✅ Passed - Status: {response.status_code}")
                 if response.text:
                     try:
+                        print(f"Response: {response.json()}")
                         return success, response.json()
                     except:
+                        print(f"Response: {response.text}")
                         return success, response.text
             else:
                 print(f"❌ Failed - Expected {expected_status}, got {response.status_code}")
@@ -44,15 +46,6 @@ class ChatAPITester:
             print(f"❌ Failed - Error: {str(e)}")
             return False, {}
 
-    def test_health_check(self):
-        """Test the health check endpoint"""
-        return self.run_test(
-            "Health Check",
-            "GET",
-            "api/health",
-            200
-        )
-
     def test_root_endpoint(self):
         """Test the root endpoint"""
         return self.run_test(
@@ -62,14 +55,23 @@ class ChatAPITester:
             200
         )
 
-    def test_chat_endpoint(self):
-        """Test the chat endpoint with a basic message"""
+    def test_status_endpoint(self):
+        """Test the status endpoint"""
         return self.run_test(
-            "Chat Endpoint",
+            "Status Endpoint",
+            "GET",
+            "api/status",
+            200
+        )
+
+    def test_create_status(self):
+        """Test creating a status check"""
+        return self.run_test(
+            "Create Status",
             "POST",
-            "api/chat",
+            "api/status",
             200,
-            data={"message": "Tell me about your ML experience"}
+            data={"client_name": "Test Client"}
         )
 
 def main():
@@ -77,9 +79,9 @@ def main():
     tester = ChatAPITester()
     
     # Run tests
-    tester.test_health_check()
     tester.test_root_endpoint()
-    tester.test_chat_endpoint()
+    tester.test_status_endpoint()
+    tester.test_create_status()
     
     # Print results
     print(f"\n📊 Tests passed: {tester.tests_passed}/{tester.tests_run}")
