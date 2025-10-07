@@ -23,6 +23,10 @@ export class BackendOpenAIService {
     // For local development: 'http://localhost:3000/api/chat'
     // For production: 'https://yourdomain.com/api/chat'
     this.apiUrl = import.meta.env.VITE_BACKEND_API_URL || '/api/chat';
+    
+    // Debug: Log the URL being used
+    console.log('Backend API URL:', this.apiUrl);
+    console.log('Environment variable:', import.meta.env.VITE_BACKEND_API_URL);
   }
 
   /**
@@ -122,6 +126,10 @@ export class BackendOpenAIService {
    * @returns Fetch response
    */
   private async makeAPICall(payload: any): Promise<Response> {
+    // Debug logging
+    console.log('Making API call to:', this.apiUrl);
+    console.log('Payload:', payload);
+
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), CHATBOT_CONFIG.apiTimeout);
 
@@ -135,9 +143,11 @@ export class BackendOpenAIService {
         signal: controller.signal
       });
 
+      console.log('Response status:', response.status);
       clearTimeout(timeoutId);
       return response;
     } catch (error) {
+      console.error('Fetch error:', error);
       clearTimeout(timeoutId);
       throw error;
     }
