@@ -7,6 +7,22 @@ const Hero = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Initial scroll offset on page load
+    const initialScroll = () => {
+      // Small delay to ensure page is fully loaded
+      setTimeout(() => {
+        if (window.scrollY === 0) { // Only scroll if we're at the very top
+          window.scrollTo({
+            top: 75,
+            behavior: "smooth",
+          });
+        }
+      }, 100);
+    };
+
+    // Run initial scroll
+    initialScroll();
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
