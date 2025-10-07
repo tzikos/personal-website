@@ -107,6 +107,14 @@ export interface StorageInfo {
   percentage: number;
 }
 
+// Rate limiting types
+export interface RateLimitState {
+  canSendMessage: boolean;
+  remainingCooldown: number;
+  messagesInLastMinute: number;
+  reason?: string;
+}
+
 // Utility types
 export type MessageRole = Message['role'];
 export type ChatbotStatus = 'idle' | 'loading' | 'error' | 'success';

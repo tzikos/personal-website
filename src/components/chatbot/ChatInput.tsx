@@ -1,8 +1,9 @@
-import React, { useState, KeyboardEvent } from 'react';
+import React, { useState, KeyboardEvent, useEffect } from 'react';
 import { ChatInputProps } from './chatbot.types';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
-import { Send } from 'lucide-react';
+import { Send, Clock } from 'lucide-react';
+import { chatbotService } from '../../services/chatbot-service';
 
 const ChatInput: React.FC<ChatInputProps> = ({ 
   onSendMessage, 
@@ -10,11 +11,44 @@ const ChatInput: React.FC<ChatInputProps> = ({
   placeholder = "Ask me about Dimitris's experience..." 
 }) => {
   const [message, setMessage] = useState('');
-  const maxLength = 500; // Character limit for messages
+  const [rateLimitState, setRateLimitState] = useState<any>(null);
+  const [cooldownTimer, setCooldownTimer] = useState<number>(0);
+  const maxLength = 200; // Updated character limit
+
+  // Subscribe to rate limit changes
+  useEffect(() => {
+    const unsubscribe = chatbotService.subscribeToRateLimit(setRateLimitState);
+    
+    // Get initial state
+    setRateLimitState(chatbotService.getRateLimitState());
+    
+    return unsubscribe;
+  }, []);
+
+  // Cooldown timer effect
+  useEffect(() => {
+    if (rateLimitState?.remainingCooldown > 0) {
+      setCooldownTimer(Math.ceil(rateLimitState.remainingCooldown / 1000));
+      
+      const interval = setInterval(() => {
+        setCooldownTimer(prev => {
+          if (prev <= 1) {
+            clearInterval(interval);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+
+      return () => clearInterval(interval);
+    } else {
+      setCooldownTimer(0);
+    }
+  }, [rateLimitState?.remainingCooldown]);
 
   const handleSend = () => {
     const trimmedMessage = message.trim();
-    if (trimmedMessage && !disabled) {
+    if (trimmedMessage && !disabled && canSendMessage) {
       onSendMessage(trimmedMessage);
       setMessage('');
     }
@@ -35,6 +69,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
   };
 
   const isMessageValid = message.trim().length > 0 && message.trim().length <= maxLength;
+  const canSendMessage = rateLimitState?.canSendMessage !== false && isMessageValid;
 
   return (
     <div className="border-t bg-white p-4">
@@ -46,7 +81,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
             onChange={handleInputChange}
             onKeyPress={handleKeyPress}
             placeholder={placeholder}
-            disabled={disabled}
+            disabled={disabled || !rateLimitState?.canSendMessage}
             className="pr-12"
             maxLength={maxLength}
           />
@@ -56,16 +91,40 @@ const ChatInput: React.FC<ChatInputProps> = ({
         </div>
         <Button
           onClick={handleSend}
-          disabled={disabled || !isMessageValid}
+          disabled={disabled || !canSendMessage}
           size="sm"
           className="px-3"
         >
-          <Send className="h-4 w-4" />
+          {cooldownTimer > 0 ? (
+            <>
+              <Clock className="h-4 w-4 mr-1" />
+              {cooldownTimer}
+            </>
+          ) : (
+            <Send className="h-4 w-4" />
+          )}
         </Button>
       </div>
-      {message.length > maxLength * 0.9 && (
-        <div className="text-xs text-amber-600 mt-1">
-          Approaching character limit ({message.length}/{maxLength})
+      
+      {/* Rate limiting feedback */}
+      {rateLimitState?.reason && (
+        <div className="text-xs text-amber-600 mt-1 flex items-center">
+          <Clock className="h-3 w-3 mr-1" />
+          {rateLimitState.reason}
+        </div>
+      )}
+      
+      {/* Character limit warning */}
+      {message.length > maxLength * 0.8 && (
+        <div className="text-xs text-gray-500 mt-1">
+          {message.length}/{maxLength} characters
+        </div>
+      )}
+      
+      {/* Messages per minute indicator */}
+      {rateLimitState?.messagesInLastMinute > 0 && (
+        <div className="text-xs text-gray-400 mt-1">
+          {rateLimitState.messagesInLastMinute}/10 messages this minute
         </div>
       )}
     </div>

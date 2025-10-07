@@ -174,7 +174,8 @@ const ChatbotContainer: React.FC<ChatbotContainerProps> = ({
   const scrollToBottom = () => {
     // Only scroll if not on initial load, messages container exists, and user has interacted
     if (!isInitialLoad && messagesContainerRef.current && hasUserInteracted) {
-      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+      // Use scrollTop instead of scrollIntoView to prevent page scrolling
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
     }
   };
 
@@ -346,8 +347,13 @@ const ChatbotContainer: React.FC<ChatbotContainerProps> = ({
           <div className="absolute bottom-16 sm:bottom-20 right-2 sm:right-4 z-10">
             <Button
               onClick={() => {
-                // Force scroll to bottom regardless of initial load state
-                messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+                // Force scroll to bottom using scrollTop to prevent page scrolling
+                if (messagesContainerRef.current) {
+                  messagesContainerRef.current.scrollTo({
+                    top: messagesContainerRef.current.scrollHeight,
+                    behavior: 'smooth'
+                  });
+                }
                 setIsUserScrolledUp(false);
                 setHasUserInteracted(true);
               }}
