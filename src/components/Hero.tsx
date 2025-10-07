@@ -41,12 +41,13 @@ const Hero = () => {
     <section
       ref={sectionRef}
       className="min-h-screen flex flex-col justify-center relative overflow-hidden"
+      style={{ paddingTop: '100px' }}
     >
       <div className="container mx-auto px-4 md:px-6 py-10 md:py-20 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <div className="animate-on-scroll opacity-0 transition-opacity duration-1000 delay-300">
             <span className="badge bg-secondary text-secondary-foreground mb-4 animate-slide-down">
-              Data Analyst & Freelance Photographer
+              Data - ML/AI - MLOps - BI
             </span>
           </div>
           

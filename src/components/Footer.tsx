@@ -25,7 +25,7 @@ const Footer = () => {
           <div className="text-center mb-8">
             <h3 className="text-xl font-medium mb-2">Dimitris Papantzikos</h3>
             <p className="text-muted-foreground">
-              Data Analyst & Freelance Photographer
+              Data - ML/AI - MLOps - BI
             </p>
             <div className="flex items-center justify-center mt-2 text-muted-foreground">
               <MapPin className="h-4 w-4 mr-1" />

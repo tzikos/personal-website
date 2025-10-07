@@ -45,7 +45,7 @@ const About = () => {
                   Life Enthusiast
                 </h2>
                 <p className="text-muted-foreground text-lg mb-6">
-                  I'm a Data Analyst with a mathematical background, currently pursuing an M.Sc. in Mathematical Modelling and Computation at DTU in Copenhagen, Denmark, with a focus on Machine Learning and AI. My professional journey mostly combines data visualizations and effective storytelling to deliver actionable insights, but also ad-hoc solutions to engineering problems.
+                  I'm a Data guy with a mathematical background, currently pursuing an M.Sc. in Mathematical Modelling and Computation at DTU in Copenhagen, Denmark, with a focus on Machine Learning and AI. My professional journey mostly combines data visualizations and effective storytelling to deliver actionable insights, but also ad-hoc solutions to engineering problems.
                 </p>
                 <p className="text-muted-foreground text-lg mb-8">
                   Usually you'll find me engaged in sports like calisthenics, weightlifting, running, kickboxing, judo or exploring the outdoors through hiking and camping. Photography is another passion that helps me capture and share the world from a different perspective and I invite you to take a look at my Instagram   

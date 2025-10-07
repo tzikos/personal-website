@@ -68,6 +68,10 @@ const ChatbotContainer: React.FC<ChatbotContainerProps> = ({
 
   // Handle sending a message
   const handleSendMessage = async (content: string) => {
+    // Mark that this is user-initiated interaction (not initial load)
+    setIsInitialLoad(false);
+    setHasUserInteracted(true);
+    
     // Add user message immediately
     addMessage(content, 'user');
 
@@ -168,7 +172,10 @@ const ChatbotContainer: React.FC<ChatbotContainerProps> = ({
 
   // Auto-scroll to latest message
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    // Only scroll if not on initial load, messages container exists, and user has interacted
+    if (!isInitialLoad && messagesContainerRef.current && hasUserInteracted) {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   // Check if user has scrolled up from bottom
@@ -183,12 +190,19 @@ const ChatbotContainer: React.FC<ChatbotContainerProps> = ({
     }
   };
 
-  // Effect for auto-scrolling when messages change (only if user hasn't scrolled up)
+  // Effect for auto-scrolling when messages change (only if user hasn't scrolled up and not on initial load)
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [hasUserInteracted, setHasUserInteracted] = useState(false);
+  
   useEffect(() => {
-    if (!isUserScrolledUp) {
+    // Only auto-scroll if:
+    // 1. Not on initial load
+    // 2. User hasn't scrolled up
+    // 3. User has interacted with the chatbot (sent a message)
+    if (!isUserScrolledUp && !isInitialLoad && hasUserInteracted) {
       scrollToBottom();
     }
-  }, [state.messages, state.isLoading, isUserScrolledUp]);
+  }, [state.messages, state.isLoading, isUserScrolledUp, isInitialLoad, hasUserInteracted]);
 
   // Session storage for conversation persistence
   useEffect(() => {
@@ -196,6 +210,10 @@ const ChatbotContainer: React.FC<ChatbotContainerProps> = ({
     const wasCleared = chatbotService.clearOldConversations(60);
     if (wasCleared) {
       console.log('Cleared old conversation session');
+      // Mark initial load as complete immediately if no messages to restore
+      setTimeout(() => {
+        setIsInitialLoad(false);
+      }, 500);
       return;
     }
 
@@ -211,6 +229,11 @@ const ChatbotContainer: React.FC<ChatbotContainerProps> = ({
       const stats = chatbotService.getContextStats(savedMessages);
       console.log('Restored conversation:', stats);
     }
+    
+    // Mark initial load as complete after a longer delay to ensure no auto-scroll
+    setTimeout(() => {
+      setIsInitialLoad(false);
+    }, 1000);
   }, []);
 
   // Save messages to session storage when they change
@@ -323,8 +346,10 @@ const ChatbotContainer: React.FC<ChatbotContainerProps> = ({
           <div className="absolute bottom-16 sm:bottom-20 right-2 sm:right-4 z-10">
             <Button
               onClick={() => {
-                scrollToBottom();
+                // Force scroll to bottom regardless of initial load state
+                messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
                 setIsUserScrolledUp(false);
+                setHasUserInteracted(true);
               }}
               size="sm"
               variant="secondary"
