@@ -1,6 +1,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { ChevronDown } from "lucide-react";
+import { ChatbotContainer } from "./chatbot";
 
 const Hero = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -59,6 +60,11 @@ const Hero = () => {
           <p className="animate-on-scroll opacity-0 transition-opacity duration-1000 delay-500 text-lg md:text-xl text-muted-foreground mt-6 mb-10 max-w-2xl mx-auto">
             I specialize in Data Science, combining latest technologies with an analytical mindset to transform complex datasets into meaningful business solutions.
           </p>
+          
+          {/* CV Chatbot Component */}
+          <div className="animate-on-scroll opacity-0 transition-opacity duration-1000 delay-600 max-w-2xl mx-auto mb-8">
+            <ChatbotContainer className="w-full" maxHeight="400px" />
+          </div>
           
           <div className="animate-on-scroll opacity-0 transition-opacity duration-1000 delay-700 flex flex-col sm:flex-row justify-center gap-4 mt-8">
             <button 
