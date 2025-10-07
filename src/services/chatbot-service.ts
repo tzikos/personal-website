@@ -4,7 +4,6 @@ import { backendOpenAIService } from './backend-openai-service';
 import { retryService, RetryConfig } from './retry-service';
 import { conversationContextService } from './conversation-context-service';
 import SessionStorageService from './session-storage-service';
-import { rateLimitService } from './rate-limit-service';
 
 /**
  * Enhanced chatbot service that combines OpenAI API calls with retry logic
@@ -34,26 +33,6 @@ export class ChatbotService {
     messages: Message[], 
     retryConfig?: Partial<RetryConfig>
   ): Promise<ApiServiceResponse<string>> {
-    // Get the latest user message for rate limiting check
-    const latestMessage = messages[messages.length - 1];
-    if (latestMessage && latestMessage.role === 'user') {
-      // Check rate limiting
-      const rateLimitState = rateLimitService.canSendMessage(latestMessage.content);
-      if (!rateLimitState.canSendMessage) {
-        return {
-          success: false,
-          error: {
-            type: 'rate_limit',
-            message: rateLimitState.reason || 'Rate limit exceeded',
-            retryable: true
-          }
-        };
-      }
-
-      // Record the message for rate limiting
-      rateLimitService.recordMessage();
-    }
-
     // Update retry configuration if provided
     if (retryConfig) {
       retryService.updateConfig(retryConfig);
@@ -121,8 +100,8 @@ export class ChatbotService {
         };
       }
 
-      // Check message length (updated limit)
-      if (message.content.length > 200) {
+      // Check message length only for user messages (not system or assistant)
+      if (message.role === 'user' && message.content.length > 200) {
         return {
           type: 'content',
           message: 'Message content is too long (max 200 characters)',
@@ -283,41 +262,6 @@ export class ChatbotService {
       return true;
     }
     return false;
-  }
-
-  /**
-   * Get current rate limiting state
-   * @returns Rate limit state
-   */
-  public getRateLimitState() {
-    return rateLimitService.getCurrentState();
-  }
-
-  /**
-   * Subscribe to rate limit state changes
-   * @param listener - Callback function for state changes
-   * @returns Unsubscribe function
-   */
-  public subscribeToRateLimit(listener: (state: any) => void) {
-    return rateLimitService.subscribe(listener);
-  }
-
-  /**
-   * Validate message content before sending
-   * @param content - Message content to validate
-   * @returns Validation result
-   */
-  public validateMessageContent(content: string) {
-    return rateLimitService.validateMessageContent(content);
-  }
-
-  /**
-   * Check if user can send a message
-   * @param content - Message content
-   * @returns Whether message can be sent
-   */
-  public canSendMessage(content: string) {
-    return rateLimitService.canSendMessage(content);
   }
 }
 
