@@ -34,6 +34,22 @@ const dataProjects = [
 const workExperience = [
   {
     id: 4,
+    title: "Student Worker (AI/ML) in Modelling & Optimisation at Vattenfall",
+    description: "Automating documentation processes using LLMs, creating internal chatbots for non-technical stakeholders, and approaching computationally heavy physics-related optimisation problems with supervised learning.",
+    detailedDescription: "At Vattenfall, I focus on leveraging AI/ML technologies to solve complex energy sector challenges. My main responsibilities include automating the documentation process of various internal tools using Large Language Models, developing an internal chatbot to help non-technical stakeholders access documentation more efficiently, and applying supervised learning techniques to tackle computationally intensive physics-related optimization problems in the energy domain.",
+    tags: ["Copenhagen", "08/2025-Present", "LLMs", "Azure AI", "Physics ML"],
+    image: "/images/vattenfall.png",
+  },
+  {
+    id: 5,
+    title: "AI Software Developer at Kapital & Connect",
+    description: "Developing an automated investor matching algorithm for startups using advanced machine learning techniques.",
+    detailedDescription: "At Kapital & Connect, I'm developing sophisticated algorithms to automatically match startups with potential investors. This involves building machine learning models that analyze startup profiles, investor preferences, and market trends to create optimal matches. The system helps streamline the investment process by identifying the most promising connections between entrepreneurs and investors.",
+    tags: ["Copenhagen", "07/2025-Present", "ML Algorithms", "Fintech", "Startups"],
+    image: "/images/kapital.png",
+  },
+  {
+    id: 6,
     title: "Data & Research Analyst at Recognyte",
     description: "End-to-end reporting, automations with Python web scraping, NLP processing, and machine learning model development (AVM).",
     detailedDescription: "At Recognyte, I lead end-to-end data analytics projects from data collection to actionable insights. My work includes building automated valuation models (AVMs), creating ETL pipelines for financial data processing, and developing interactive dashboards for decision-makers. I've also implemented NLP solutions to extract insights from unstructured text data.",
@@ -41,7 +57,7 @@ const workExperience = [
     image: "/images/recognyte.png",
   },
   {
-    id: 5,
+    id: 7,
     title: "Data Analyst at Data to Action",
     description: "Data gathering (SQL, web scraping), manipulation, visualization (Tableau), and forecasting (scikit-learn).",
     detailedDescription: "At Data to Action, I specialized in transforming raw data into business insights through advanced analytics and visualization. I created demand forecasting models for retail clients, built automated data reporting systems, and developed web scraping solutions for market intelligence gathering.",
@@ -52,7 +68,7 @@ const workExperience = [
 
 const talks = [
   {
-    id: 6,
+    id: 8,
     title: "Athens Tableau User Group",
     description: "Delivered an educational presentation for the Tableau user community, sharing data visualization best practices.",
     detailedDescription: "I presented advanced visualization techniques and best practices to the Athens Tableau user community, demonstrating how to effectively communicate complex data insights. The presentation covered creating interactive dashboards, optimizing for performance, and design principles for clear data storytelling.",
