@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Message, ChatbotContainerProps, ChatbotState, ErrorState } from './chatbot.types';
+import { Message, ChatbotContainerProps, ChatbotState, ErrorState, PlaybackState } from './chatbot.types';
 import { chatbotService } from '../../services/chatbot-service';
 import SessionStorageService from '../../services/session-storage-service';
+import { textToSpeechService } from '../../services/text-to-speech-service';
+import { audioManager } from '../../services/audio-manager';
 import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
 import TypingIndicator from './TypingIndicator';
@@ -39,6 +41,9 @@ const ChatbotContainer: React.FC<ChatbotContainerProps> = ({
     isLoading: false,
     error: null
   });
+
+  // TTS playback state management
+  const [playbackStates, setPlaybackStates] = useState<Map<string, PlaybackState>>(new Map());
 
   // Ref for auto-scrolling
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -154,6 +159,135 @@ const ChatbotContainer: React.FC<ChatbotContainerProps> = ({
       error: null
     }));
     SessionStorageService.clearMessages();
+    
+    // Stop any playing audio and clear playback states
+    audioManager.stopCurrent();
+    setPlaybackStates(new Map());
+  };
+
+  // Handle TTS play request
+  const handlePlayTTS = async (messageId: string, text: string) => {
+    // Update state to loading
+    setPlaybackStates(prev => new Map(prev.set(messageId, {
+      isPlaying: false,
+      isLoading: true,
+      error: null,
+      messageId
+    })));
+
+    try {
+      // Generate speech
+      const result = await textToSpeechService.generateSpeech(text);
+      
+      if (result.success && result.audioData) {
+        try {
+          // Play audio
+          await audioManager.playAudio(result.audioData, messageId);
+          
+          // Update state to playing
+          setPlaybackStates(prev => new Map(prev.set(messageId, {
+            isPlaying: true,
+            isLoading: false,
+            error: null,
+            messageId
+          })));
+
+          // Set up audio end listener to reset state
+          const checkAudioEnd = () => {
+            if (!audioManager.isPlaying(messageId)) {
+              setPlaybackStates(prev => {
+                const newStates = new Map(prev);
+                newStates.delete(messageId);
+                return newStates;
+              });
+            } else {
+              // Check again in 100ms
+              setTimeout(checkAudioEnd, 100);
+            }
+          };
+          
+          // Start checking for audio end
+          setTimeout(checkAudioEnd, 100);
+          
+        } catch (audioError) {
+          // Handle audio playback errors
+          const errorMessage = audioError instanceof Error 
+            ? `Audio playback failed: ${audioError.message}`
+            : 'Failed to play audio';
+            
+          setPlaybackStates(prev => new Map(prev.set(messageId, {
+            isPlaying: false,
+            isLoading: false,
+            error: errorMessage,
+            messageId
+          })));
+        }
+      } else {
+        // Handle TTS generation error
+        const errorMessage = result.error 
+          ? textToSpeechService.getUserFriendlyErrorMessage(result.error)
+          : 'Failed to generate speech';
+          
+        setPlaybackStates(prev => new Map(prev.set(messageId, {
+          isPlaying: false,
+          isLoading: false,
+          error: errorMessage,
+          messageId
+        })));
+      }
+    } catch (error) {
+      // Handle unexpected errors
+      let errorMessage = 'An unexpected error occurred';
+      
+      if (error instanceof Error) {
+        // Provide more specific error messages based on error type
+        if (error.message.includes('fetch')) {
+          errorMessage = 'Network error - please check your connection and try again';
+        } else if (error.message.includes('timeout')) {
+          errorMessage = 'Request timed out - please try again';
+        } else if (error.message.includes('audio')) {
+          errorMessage = 'Audio playback error - please try again';
+        } else {
+          errorMessage = error.message;
+        }
+      }
+        
+      setPlaybackStates(prev => new Map(prev.set(messageId, {
+        isPlaying: false,
+        isLoading: false,
+        error: errorMessage,
+        messageId
+      })));
+      
+      // Log error for debugging (sanitized)
+      console.error('TTS error for message', messageId, ':', error);
+    }
+  };
+
+  // Handle TTS stop request
+  const handleStopTTS = (messageId: string) => {
+    // Stop audio playback
+    audioManager.stopCurrent();
+    
+    // Clear playback state
+    setPlaybackStates(prev => {
+      const newStates = new Map(prev);
+      newStates.delete(messageId);
+      return newStates;
+    });
+  };
+
+  // Handle TTS retry (when user clicks on error state)
+  const handleTTSRetry = (messageId: string, text: string) => {
+    // Clear the error state first
+    setPlaybackStates(prev => {
+      const newStates = new Map(prev);
+      newStates.delete(messageId);
+      return newStates;
+    });
+    
+    // Retry the TTS request
+    handlePlayTTS(messageId, text);
   };
 
   // Performance monitoring - log context stats periodically
@@ -247,6 +381,13 @@ const ChatbotContainer: React.FC<ChatbotContainerProps> = ({
     }
   }, [state.messages]);
 
+  // Cleanup audio on unmount
+  useEffect(() => {
+    return () => {
+      audioManager.cleanup();
+    };
+  }, []);
+
   // Render error message
   const renderError = () => {
     if (!state.error) return null;
@@ -332,6 +473,9 @@ const ChatbotContainer: React.FC<ChatbotContainerProps> = ({
               key={message.id}
               message={message}
               isUser={message.role === 'user'}
+              playbackState={playbackStates.get(message.id)}
+              onPlayTTS={handlePlayTTS}
+              onStopTTS={handleStopTTS}
             />
           ))}
 

@@ -1,8 +1,15 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { ChatMessageProps } from './chatbot.types';
+import PlayButton from './PlayButton';
 
-const ChatMessage: React.FC<ChatMessageProps> = ({ message, isUser }) => {
+const ChatMessage: React.FC<ChatMessageProps> = ({ 
+  message, 
+  isUser, 
+  playbackState, 
+  onPlayTTS, 
+  onStopTTS 
+}) => {
   const formatTimestamp = (timestamp: Date) => {
     return timestamp.toLocaleTimeString([], { 
       hour: '2-digit', 
@@ -12,10 +19,14 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message, isUser }) => {
 
   return (
     <div className={`flex mb-4 ${isUser ? 'justify-end' : 'justify-start'}`}>
-      <div className={`max-w-[85%] sm:max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
+      <div className={`max-w-[90%] sm:max-w-[85%] md:max-w-xs lg:max-w-md px-3 py-2 sm:px-4 rounded-lg transition-all duration-300 ease-out ${
         isUser 
           ? 'bg-blue-600 text-white ml-auto' 
-          : 'bg-gray-100 text-gray-900 mr-auto'
+          : `bg-gray-100 text-gray-900 mr-auto ${
+              playbackState?.messageId === message.id && playbackState?.isPlaying 
+                ? 'ring-2 ring-blue-200 ring-opacity-50 shadow-lg shadow-blue-100' 
+                : ''
+            }`
       }`}>
         <div className="text-sm leading-relaxed">
           {isUser ? (
@@ -65,11 +76,43 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message, isUser }) => {
             </ReactMarkdown>
           )}
         </div>
-        <div className={`text-xs mt-1 ${
-          isUser ? 'text-blue-100' : 'text-gray-500'
-        }`}>
-          {formatTimestamp(message.timestamp)}
-        </div>
+        
+        {/* Play button for bot messages with content */}
+        {!isUser && message.content.trim() && onPlayTTS && onStopTTS && (
+          <div className="flex items-center justify-between mt-2 gap-2 transition-all duration-300 ease-out">
+            <div className={`text-xs flex-1 transition-colors duration-200 ${
+              playbackState?.messageId === message.id && playbackState?.isPlaying 
+                ? 'text-blue-600 font-medium' 
+                : isUser ? 'text-blue-100' : 'text-gray-500'
+            }`}>
+              <span className="block sm:inline">
+                {formatTimestamp(message.timestamp)}
+              </span>
+              {playbackState?.messageId === message.id && playbackState?.isPlaying && (
+                <span className="ml-1 inline-block w-1 h-1 bg-blue-500 rounded-full animate-pulse" />
+              )}
+            </div>
+            <div className="flex-shrink-0">
+              <PlayButton
+                messageId={message.id}
+                text={message.content}
+                playbackState={playbackState}
+                onPlay={onPlayTTS}
+                onStop={onStopTTS}
+                className="transition-transform duration-200 ease-out"
+              />
+            </div>
+          </div>
+        )}
+        
+        {/* Timestamp only for user messages or bot messages without TTS */}
+        {(isUser || !message.content.trim() || !onPlayTTS || !onStopTTS) && (
+          <div className={`text-xs mt-1 ${
+            isUser ? 'text-blue-100' : 'text-gray-500'
+          }`}>
+            {formatTimestamp(message.timestamp)}
+          </div>
+        )}
       </div>
     </div>
   );

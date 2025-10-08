@@ -75,6 +75,9 @@ export interface ChatbotContainerProps {
 export interface ChatMessageProps {
   message: Message;
   isUser: boolean;
+  playbackState?: PlaybackState;
+  onPlayTTS?: (messageId: string, text: string) => void;
+  onStopTTS?: (messageId: string) => void;
 }
 
 export interface ChatInputProps {
@@ -85,6 +88,16 @@ export interface ChatInputProps {
 
 export interface TypingIndicatorProps {
   visible: boolean;
+}
+
+export interface PlayButtonProps {
+  messageId: string;
+  text: string;
+  playbackState?: PlaybackState;
+  onPlay: (messageId: string, text: string) => void;
+  onStop: (messageId: string) => void;
+  disabled?: boolean;
+  className?: string;
 }
 
 // API service types
@@ -115,6 +128,75 @@ export interface RateLimitState {
   reason?: string;
 }
 
+// Text-to-Speech related types
+export interface TTSRequest {
+  text: string;
+  voiceId?: string;
+  modelId?: string;
+  outputFormat?: string;
+  voiceSettings?: {
+    stability?: number;
+    similarity_boost?: number;
+    style?: number;
+    use_speaker_boost?: boolean;
+  };
+}
+
+export interface TTSResponse {
+  success: boolean;
+  audioData?: ArrayBuffer;
+  error?: string;
+  audioUrl?: string;
+}
+
+export interface PlaybackState {
+  isPlaying: boolean;
+  isLoading: boolean;
+  error: string | null;
+  messageId: string;
+  audioUrl?: string;
+}
+
+export interface TTSConfig {
+  voiceId: string;
+  modelId: string;
+  outputFormat: string;
+  maxTextLength: number;
+  apiTimeout: number;
+}
+
+// Audio management types
+export interface AudioManager {
+  currentAudio: HTMLAudioElement | null;
+  currentMessageId: string | null;
+  playAudio: (audioData: ArrayBuffer, messageId: string) => Promise<void>;
+  stopCurrent: () => void;
+  isPlaying: (messageId: string) => boolean;
+}
+
+// TTS service types
+export interface TTSServiceResponse<T> {
+  success: boolean;
+  data?: T;
+  error?: TTSErrorState;
+  audioData?: ArrayBuffer;
+  audioUrl?: string;
+}
+
+// Extended error types for TTS
+export type TTSErrorType = ErrorType | 'tts_api' | 'audio_playback' | 'text_too_long' | 'voice_not_found';
+
+export interface TTSErrorState extends ErrorState {
+  type: TTSErrorType;
+}
+
+// Extended message interface with TTS support
+export interface MessageWithTTS extends Message {
+  ttsState?: PlaybackState;
+  canPlayTTS?: boolean;
+}
+
 // Utility types
 export type MessageRole = Message['role'];
 export type ChatbotStatus = 'idle' | 'loading' | 'error' | 'success';
+export type TTSStatus = 'idle' | 'loading' | 'playing' | 'error' | 'stopped';
