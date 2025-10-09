@@ -29,6 +29,46 @@ const dataProjects = [
     tags: ["Neural Networks", "PyTorch", "Regression", "Real Estate"],
     image: "/images/cph.png",
   },
+  {
+    id: 4,
+    title: "Optimization for Data Science - Graphical LASSO Regression",
+    description: "Academic project focused on implementing and experimenting with Graphical LASSO regression for data science optimization tasks.",
+    detailedDescription: "This academic project involved implementing and experimenting with Graphical LASSO regression techniques for data science optimization. I used Python with NumPy, Pandas, Matplotlib, and CVXPY in a Conda environment to ensure reproducible experimentation and analysis. The project focused on understanding sparse inverse covariance estimation and its applications in high-dimensional data analysis.",
+    tags: ["Python", "Optimization", "CVXPY", "Academic", "Statistics"],
+    image: "/images/graphical-lasso.png",
+  },
+  {
+    id: 5,
+    title: "High-Performance Computing for Thermal Simulation",
+    description: "HPC course project focused on optimizing heat diffusion simulations using parallel computing and GPU acceleration.",
+    detailedDescription: "This HPC course project focused on optimizing heat diffusion simulations through advanced parallel computing techniques. I implemented multi-core CPU parallelization using multiprocessing, developed CUDA GPU kernels with Numba, and applied CuPy optimizations. The project utilized DTU's HPC cluster with job scheduling (LSF), performance profiling (Nsys, line_profiler), and comprehensive speedup analysis to achieve significant performance improvements.",
+    tags: ["HPC", "CUDA", "Python", "Parallel Computing", "GPU"],
+    image: "/images/hpc-thermal.png",
+  },
+  {
+    id: 6,
+    title: "LinkedIn Student Job Scraper & Discord Bot",
+    description: "Automated web scraping system that monitors LinkedIn for new student jobs in Copenhagen with Discord bot integration.",
+    detailedDescription: "I built an automated web scraping system that continuously monitors LinkedIn for new student job postings in Copenhagen. The system includes a Discord bot that posts real-time job alerts with interactive description buttons, making it easy for students to stay updated on opportunities. Built with Python, Discord.py, and BeautifulSoup, the system is designed for AWS Lambda deployment to ensure reliable, serverless operation.",
+    tags: ["Web Scraping", "Discord Bot", "Python", "AWS Lambda", "Automation"],
+    image: "/images/linkedin-scraper.png",
+  },
+  {
+    id: 7,
+    title: "Copenhagen Apartment Finder & Analytics Platform",
+    description: "End-to-end web scraping and data analytics platform for Copenhagen rental market with automated insights.",
+    detailedDescription: "I developed a comprehensive end-to-end web scraping and data analytics platform specifically for the Copenhagen rental market. The system features an automated data pipeline with a Streamlit dashboard for visualization, statistical analysis capabilities, and automated GitHub updates for continuous data integration. Built with Python, BeautifulSoup, Streamlit, Pandas, and multiprocessing for efficient data processing and real-time market insights.",
+    tags: ["Web Scraping", "Streamlit", "Data Analytics", "Real Estate", "Automation"],
+    image: "/images/apartment-finder.png",
+  },
+  {
+    id: 8,
+    title: "GradeAid - AI Learning Material Creator",
+    description: "AI-assisted learning material creator designed specifically for neurodivergent learners with comprehensive database design.",
+    detailedDescription: "GradeAid is an innovative AI-assisted platform designed to create personalized learning materials for neurodivergent learners. I was responsible for the complete database design, implementation of AI services using Langchain and OpenAI, building the frontend interface, and comprehensive testing. The system uses PostgreSQL for robust data management and Streamlit for rapid proof-of-concept development, ensuring accessibility and effectiveness for diverse learning needs.",
+    tags: ["AI", "Education", "PostgreSQL", "Langchain", "OpenAI", "Accessibility"],
+    image: "/images/gradeaid.png",
+  },
 ];
 
 const workExperience = [
