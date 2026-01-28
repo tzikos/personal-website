@@ -9,7 +9,7 @@ export interface TTSConfig {
 }
 
 export const TTS_CONFIG: TTSConfig = {
-  voiceId: 'muNYubwBerZLKpcUGOzK', // My voice ID (Dimitris)
+  voiceId: 'yCpaZffTvy3eneNRGfsE', // Selected voice ID
   modelId: 'eleven_multilingual_v2', // ElevenLabs multilingual model for better quality
   outputFormat: 'mp3_44100_128', // MP3 format optimized for web playback
   maxTextLength: 2000, // Maximum characters for TTS conversion
