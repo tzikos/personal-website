@@ -56,7 +56,7 @@ const Navbar = () => {
         <nav className="hidden md:flex items-center space-x-8">
           <a
             href="#about"
-            className="nav-link"
+            className="nav-link-animated"
             onClick={(e) => {
               e.preventDefault();
               scrollToSection("about");
@@ -66,7 +66,7 @@ const Navbar = () => {
           </a>
           <a
             href="#data"
-            className="nav-link"
+            className="nav-link-animated"
             onClick={(e) => {
               e.preventDefault();
               scrollToSection("data");
@@ -76,7 +76,7 @@ const Navbar = () => {
           </a>
           <a
             href="#experience"
-            className="nav-link"
+            className="nav-link-animated"
             onClick={(e) => {
               e.preventDefault();
               scrollToSection("experience");
@@ -86,7 +86,7 @@ const Navbar = () => {
           </a>
           <a
             href="#gallery"
-            className="nav-link"
+            className="nav-link-animated"
             onClick={(e) => {
               e.preventDefault();
               scrollToSection("gallery");
@@ -96,7 +96,7 @@ const Navbar = () => {
           </a>
           <a
             href="#contact"
-            className="nav-link"
+            className="nav-link-animated"
             onClick={(e) => {
               e.preventDefault();
               scrollToSection("contact");

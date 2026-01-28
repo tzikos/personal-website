@@ -5,7 +5,7 @@ import { MessageCircle } from "lucide-react"; // Adjust the import based on your
 
 const About = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -48,61 +48,61 @@ const About = () => {
                   I'm a Data guy with a mathematical background, currently pursuing an M.Sc. in Mathematical Modelling and Computation at DTU in Copenhagen, Denmark, with a focus on Machine Learning and AI. My professional journey mostly combines data visualizations and effective storytelling to deliver actionable insights, but also ad-hoc solutions to engineering problems.
                 </p>
                 <p className="text-muted-foreground text-lg mb-8">
-                  Usually you'll find me engaged in sports like calisthenics, weightlifting, running, kickboxing, judo or exploring the outdoors through hiking and camping. Photography is another passion that helps me capture and share the world from a different perspective and I invite you to take a look at my Instagram   
-                  <a 
-                    href="https://www.instagram.com/dpadventures" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
+                  Usually you'll find me engaged in sports like calisthenics, weightlifting, running, kickboxing, judo or exploring the outdoors through hiking and camping. Photography is another passion that helps me capture and share the world from a different perspective and I invite you to take a look at my Instagram
+                  <a
+                    href="https://www.instagram.com/dpadventures"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-primary hover:underline"
                   >
-                  <b> portfolio</b>
+                    <b> portfolio</b>
                   </a>.
                 </p>
-                
+
                 <div className="flex flex-wrap gap-3 mb-8">
-                  <span className="badge border-primary/20 bg-primary/5 text-primary">Python</span>
-                  <span className="badge border-primary/20 bg-primary/5 text-primary">SQL</span>
-                  <span className="badge border-primary/20 bg-primary/5 text-primary">Tableau</span>
-                  <span className="badge border-primary/20 bg-primary/5 text-primary">Machine Learning</span>
-                  <span className="badge border-primary/20 bg-primary/5 text-primary">Google Cloud</span>
-                  <span className="badge border-primary/20 bg-primary/5 text-primary">Docker</span>
-                  <span className="badge border-primary/20 bg-primary/5 text-primary">R</span>
-                  <span className="badge border-primary/20 bg-primary/5 text-primary">Git/GitHub</span>
+                  <span className="badge border-primary/20 bg-primary/5 text-primary shimmer">Python</span>
+                  <span className="badge border-primary/20 bg-primary/5 text-primary shimmer">SQL</span>
+                  <span className="badge border-primary/20 bg-primary/5 text-primary shimmer">Tableau</span>
+                  <span className="badge border-primary/20 bg-primary/5 text-primary shimmer">Machine Learning</span>
+                  <span className="badge border-primary/20 bg-primary/5 text-primary shimmer">Google Cloud</span>
+                  <span className="badge border-primary/20 bg-primary/5 text-primary shimmer">Docker</span>
+                  <span className="badge border-primary/20 bg-primary/5 text-primary shimmer">R</span>
+                  <span className="badge border-primary/20 bg-primary/5 text-primary shimmer">Git/GitHub</span>
                 </div>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-2 gap-4">
               <div className="animate-on-scroll opacity-0 transition-opacity duration-700 delay-300 space-y-4">
-                <div className="glass-card p-6 hover-lift">
-                  <Database className="h-10 w-10 text-blue-500 mb-4" />
+                <div className="glass-card p-6 hover-lift gradient-border card-3d">
+                  <Database className="h-10 w-10 text-blue-500 mb-4 icon-float" />
                   <h3 className="text-xl font-medium mb-2">Data Engineering</h3>
                   <p className="text-muted-foreground">
                     Building automated pipelines and preprocessing workflows for complex datasets.
                   </p>
                 </div>
-                
-                <div className="glass-card p-6 hover-lift">
-                  <LineChart className="h-10 w-10 text-green-500 mb-4" />
+
+                <div className="glass-card p-6 hover-lift gradient-border card-3d">
+                  <LineChart className="h-10 w-10 text-green-500 mb-4 icon-float" style={{ animationDelay: '0.5s' }} />
                   <h3 className="text-xl font-medium mb-2">Data Visualization</h3>
                   <p className="text-muted-foreground">
                     Creating insightful reports and interactive dashboards with Tableau.
                   </p>
                 </div>
               </div>
-              
+
               <div className="animate-on-scroll opacity-0 transition-opacity duration-700 delay-500 space-y-4 mt-6">
-                <div className="glass-card p-6 hover-lift">
-                  <Code className="h-10 w-10 text-purple-500 mb-4" />
+                <div className="glass-card p-6 hover-lift gradient-border card-3d">
+                  <Code className="h-10 w-10 text-purple-500 mb-4 icon-float" style={{ animationDelay: '1s' }} />
                   <h3 className="text-xl font-medium mb-2">Machine Learning</h3>
                   <p className="text-muted-foreground">
                     Developing predictive models and algorithms for business insights.
                   </p>
                 </div>
-                
-                <div className="glass-card p-6 hover-lift">
-                  <MessageCircle className="h-10 w-10 text-amber-500 mb-4" /> 
-                  <h3 className="text-xl font-medium mb-2">Communication</h3> 
+
+                <div className="glass-card p-6 hover-lift gradient-border card-3d">
+                  <MessageCircle className="h-10 w-10 text-amber-500 mb-4 icon-float" style={{ animationDelay: '1.5s' }} />
+                  <h3 className="text-xl font-medium mb-2">Communication</h3>
                   <p className="text-muted-foreground">
                     Specializing in effective communication to convey complex data insights to non-tech-savvy stakeholders, ensuring clarity and understanding.
                   </p>
@@ -110,11 +110,11 @@ const About = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-10">
             <div className="animate-on-scroll opacity-0 transition-opacity duration-700 delay-200">
-              <div className="glass-card p-8 hover-lift h-full">
-                <BookOpen className="h-10 w-10 text-blue-500 mb-6" />
+              <div className="glass-card p-8 hover-lift h-full gradient-border glow-effect">
+                <BookOpen className="h-10 w-10 text-blue-500 mb-6 icon-float" />
                 <h3 className="text-2xl font-medium mb-4">Education</h3>
                 <ul className="space-y-4">
                   <li>
@@ -129,10 +129,10 @@ const About = () => {
                 </ul>
               </div>
             </div>
-            
+
             <div className="animate-on-scroll opacity-0 transition-opacity duration-700 delay-400">
-              <div className="glass-card p-8 hover-lift h-full">
-                <Award className="h-10 w-10 text-amber-500 mb-6" />
+              <div className="glass-card p-8 hover-lift h-full gradient-border glow-effect">
+                <Award className="h-10 w-10 text-amber-500 mb-6 icon-float" style={{ animationDelay: '0.5s' }} />
                 <h3 className="text-2xl font-medium mb-4">Achievements & Certifications</h3>
                 <ul className="space-y-4">
                   <li>

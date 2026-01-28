@@ -11,17 +11,19 @@ const Footer = () => {
   };
 
   return (
-    <footer className="py-12 bg-white dark:bg-gray-950 border-t border-border">
+    <footer className="py-12 bg-white dark:bg-gray-950 border-t border-border relative">
+      {/* Gradient divider at top */}
+      <div className="absolute top-0 left-0 right-0 gradient-divider" />
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center">
           <button
             onClick={scrollToTop}
-            className="mb-8 p-2 rounded-full bg-secondary hover:bg-secondary/80 transition-colors duration-300"
+            className="mb-8 p-2 rounded-full bg-secondary scroll-top-animated"
             aria-label="Scroll to top"
           >
             <ChevronUp className="h-6 w-6" />
           </button>
-          
+
           <div className="text-center mb-8">
             <h3 className="text-xl font-medium mb-2">Dimitris Papantzikos</h3>
             <p className="text-muted-foreground">
@@ -32,7 +34,7 @@ const Footer = () => {
               <span>Copenhagen, Denmark</span>
             </div>
           </div>
-          
+
           <div className="flex space-x-6 mb-8">
             <a
               href="mailto:papantzikos12@gmail.com"
@@ -40,7 +42,7 @@ const Footer = () => {
               rel="noopener noreferrer" // This is a security best practice
               className="text-muted-foreground hover:text-foreground transition-colors flex items-center"
             >
-              <Mail className="mr-1 h-4 w-4" /> 
+              <Mail className="mr-1 h-4 w-4" />
               Email
             </a>
             <a
@@ -68,7 +70,7 @@ const Footer = () => {
               +45 91 62 87 19
             </a>
           </div>
-          
+
           <div className="text-center text-sm text-muted-foreground">
             <p>&copy; {new Date().getFullYear()} Dimitris Papantzikos. All rights reserved.</p>
             <p className="mt-1">

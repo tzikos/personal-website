@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ArrowRight, BarChart, Code, ExternalLink } from "lucide-react";
 import ProjectDetailDialog from "./ProjectDetailDialog";
-import { Presentation } from "lucide-react"; 
+import { Presentation } from "lucide-react";
 import Gallery from "./Gallery"; // Import the new Gallery component
 
 const dataProjects = [
@@ -135,7 +135,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className }) => {
 
   return (
     <>
-      <div className={`glass-card overflow-hidden group hover-lift ${className}`}>
+      <div className={`glass-card overflow-hidden group hover-lift glow-effect ${className}`}>
         <div className="aspect-video relative overflow-hidden">
           <img
             src={project.image}
@@ -149,7 +149,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className }) => {
           <p className="text-muted-foreground mb-4">{project.description}</p>
           <div className="flex flex-wrap gap-2 mb-4">
             {project.tags.map((tag, i) => (
-              <span key={i} className="badge text-xs bg-secondary text-secondary-foreground">
+              <span key={i} className="badge text-xs bg-secondary text-secondary-foreground shimmer">
                 {tag}
               </span>
             ))}
@@ -162,7 +162,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className }) => {
           </button>
         </div>
       </div>
-      
+
       <ProjectDetailDialog
         project={project}
         open={showDetails}
@@ -175,7 +175,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className }) => {
 const Portfolio = () => {
   const dataSectionRef = useRef<HTMLDivElement>(null);
   const workSectionRef = useRef<HTMLDivElement>(null);
-  
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -245,7 +245,7 @@ const Portfolio = () => {
                 </div>
               ))}
             </div>
-            
+
             <div className="mt-10 flex justify-center md:hidden">
               <a
                 href="https://www.linkedin.com/in/dimitris-papantzikos/details/projects/"
@@ -299,7 +299,7 @@ const Portfolio = () => {
                 </div>
               ))}
             </div>
-            
+
             <div className="mt-10 flex justify-center md:hidden">
               <a
                 href="/CV2025_Dimitris_Papantzikos.pdf"
