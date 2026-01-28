@@ -169,7 +169,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className }) => {
 
   return (
     <>
-      <div className={`glass-card overflow-hidden group hover-lift glow-effect ${className}`}>
+      <div
+        className={`glass-card overflow-hidden group hover-lift glow-effect cursor-pointer ${className}`}
+        onClick={() => setShowDetails(true)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => e.key === 'Enter' && setShowDetails(true)}
+      >
         <div className="aspect-video relative overflow-hidden">
           <img
             src={project.image}
@@ -188,12 +194,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className }) => {
               </span>
             ))}
           </div>
-          <button
-            onClick={() => setShowDetails(true)}
-            className="inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors"
-          >
-            View Details <ArrowRight className="ml-1 h-4 w-4" />
-          </button>
+          <span className="inline-flex items-center text-sm font-medium text-primary group-hover:text-primary/80 transition-colors">
+            View Details <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </span>
         </div>
       </div>
 
