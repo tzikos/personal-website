@@ -1,15 +1,14 @@
 // Backend OpenAI service that calls your secure API endpoint
-import { 
-  Message, 
-  ErrorState, 
-  ApiServiceResponse 
+import {
+  Message,
+  ErrorState,
+  ApiServiceResponse
 } from '../components/chatbot/chatbot.types';
 import { CHATBOT_CONFIG } from '../config/chatbot-config';
-import { CHATBOT_SYSTEM_PROMPT } from '../config/chatbot-prompt';
 import { conversationContextService } from './conversation-context-service';
 
-// Update the config with the system prompt
-CHATBOT_CONFIG.systemPrompt = CHATBOT_SYSTEM_PROMPT;
+// Note: System prompt is now handled server-side in the AWS Lambda function
+// Frontend only sends user/assistant messages for security
 
 /**
  * Backend OpenAI service that calls your secure API endpoint instead of OpenAI directly
@@ -23,7 +22,7 @@ export class BackendOpenAIService {
     // For local development: 'http://localhost:3000/api/chat'
     // For production: 'https://yourdomain.com/api/chat'
     this.apiUrl = import.meta.env.VITE_BACKEND_API_URL || '/api/chat';
-    
+
     // Debug: Log the URL being used
     console.log('Backend API URL:', this.apiUrl);
     console.log('Environment variable:', import.meta.env.VITE_BACKEND_API_URL);
@@ -48,7 +47,7 @@ export class BackendOpenAIService {
     try {
       // Format messages for API
       const formattedMessages = this.formatMessagesForAPI(messages);
-      
+
       // Create API request payload
       const requestPayload = {
         messages: formattedMessages,
@@ -59,13 +58,13 @@ export class BackendOpenAIService {
 
       // Make API call to your backend with timeout
       const response = await this.makeAPICall(requestPayload);
-      
+
       if (!response.ok) {
         return this.handleAPIError(response);
       }
 
       const data = await response.json();
-      
+
       // Check if the response indicates success
       if (!data.success || !data.data) {
         return {
@@ -90,18 +89,11 @@ export class BackendOpenAIService {
 
   /**
    * Format conversation messages for API with context optimization
+   * Note: System prompt is handled server-side, so we only send user/assistant messages
    * @param messages - Array of conversation messages
-   * @returns Formatted messages array with system prompt
+   * @returns Formatted messages array (user/assistant only)
    */
-  private formatMessagesForAPI(messages: Message[]): Array<{role: string; content: string}> {
-    // Start with system prompt
-    const formattedMessages = [
-      {
-        role: 'system',
-        content: CHATBOT_CONFIG.systemPrompt
-      }
-    ];
-
+  private formatMessagesForAPI(messages: Message[]): Array<{ role: string; content: string }> {
     // Optimize conversation context for API call
     const optimizedMessages = conversationContextService.prepareForAPI(messages, {
       maxMessages: CHATBOT_CONFIG.maxMessages,
@@ -109,15 +101,11 @@ export class BackendOpenAIService {
       prioritizeRecent: true
     });
 
-    // Add optimized conversation messages
-    optimizedMessages.forEach(message => {
-      formattedMessages.push({
-        role: message.role,
-        content: message.content
-      });
-    });
-
-    return formattedMessages;
+    // Return only user/assistant messages (system prompt is added server-side)
+    return optimizedMessages.map(message => ({
+      role: message.role,
+      content: message.content
+    }));
   }
 
   /**
@@ -165,7 +153,7 @@ export class BackendOpenAIService {
 
     try {
       const errorData = await response.json();
-      
+
       switch (response.status) {
         case 400:
           errorType = 'content';
