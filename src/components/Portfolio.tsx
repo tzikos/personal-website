@@ -6,6 +6,22 @@ import Gallery from "./Gallery"; // Import the new Gallery component
 
 const dataProjects = [
   {
+    id: 0,
+    title: "EEG Abnormality Detection with Deep Learning",
+    description: "Evaluated EEGMamba (state-space) and LaBraM (transformer) architectures for EEG abnormality detection on clinical and portable EEG data using PyTorch Lightning on GCP.",
+    detailedDescription: "This project evaluates two state-of-the-art deep learning architectures—EEGMamba (a state-space model) and LaBraM (a transformer)—for EEG abnormality detection on both the clinical TUH EEG Abnormal dataset and BrainCapture's portable EEG recordings. Implemented a unified, scalable training pipeline using PyTorch Lightning deployed on Google Cloud Platform with NVIDIA T4 GPU, tracking experiments via Weights & Biases. Both models were fine-tuned with standardized preprocessing (band-pass/notch filtering, 200 Hz resampling, windowing, normalization). Results showed EEGMamba achieves ~76.5% recall on portable EEG, making it suitable for screening where minimizing false negatives is critical, while LaBraM trains 4x faster but drops to ~33% recall on portable data.",
+    tags: ["Deep Learning", "PyTorch Lightning", "GCP", "EEG", "Healthcare", "W&B"],
+    image: "/images/eeg-detection.png",
+  },
+  {
+    id: 10,
+    title: "VC Network Analysis & Investor Recommendation",
+    description: "Analyzed venture capital investor-company networks and built a hybrid recommendation system combining NLP-based thematic matching with network-structural metrics.",
+    detailedDescription: "This project analyzes a large venture capital investor–company network to show that funding ecosystems are highly sparse, modular, and dominated by influential hubs, with co-investment communities often cutting across traditional industry labels. Developed a hybrid recommendation system combining NLP-based thematic matching (TF-IDF on company descriptions) with network-structural metrics such as local betweenness, community cohesion, specialization, and leadership roles. The key insight is that effective investor targeting requires balancing thematic fit with strategic network position, enabling startups to identify investors who are not just active, but influential, specialized, and well-embedded in relevant communities.",
+    tags: ["Network Analysis", "NLP", "TF-IDF", "Graph Theory", "Recommendation Systems"],
+    image: "/images/vc-network.png",
+  },
+  {
     id: 1,
     title: "Plant Leaf Health Classification",
     description: "MLOps project with model training and deployment on Google Cloud (VertexAI, Cloud Run) using FastAPI, Streamlit, Docker, and GitHub Actions.",
@@ -73,6 +89,15 @@ const dataProjects = [
 
 const workExperience = [
   {
+    id: 3,
+    title: "Teaching Assistant - 02476 Machine Learning Operations",
+    description: "Teaching assistant at DTU for the MLOps course, supporting students in understanding and applying course material through in-person and online assistance.",
+    detailedDescription: "Grateful to be a teaching assistant in one of the best DTU courses, 02476 Machine Learning Operations by Nicki Skafte Detlefsen. My role was to support students in understanding and applying the course material, covering topics like Docker, CI/CD, cloud deployment, experiment tracking, and model optimization. I provided assistance through in-person sessions and online support.",
+    tags: ["Copenhagen", "01/2026", "MLOps", "Teaching", "Docker", "CI/CD"],
+    image: "/images/dtu.png",
+    link: "https://skaftenicki.github.io/dtu_mlops/",
+  },
+  {
     id: 4,
     title: "Student Worker (AI/ML) in Modelling & Optimisation at Vattenfall",
     description: "Automating documentation processes using LLMs, creating internal chatbots for non-technical stakeholders, and approaching computationally heavy physics-related optimisation problems with supervised learning.",
@@ -82,11 +107,11 @@ const workExperience = [
   },
   {
     id: 5,
-    title: "AI Software Developer at Kapital & Connect",
+    title: "AI Software Developer at Schellinger Capital",
     description: "Developing an automated investor matching algorithm for startups using advanced machine learning techniques.",
-    detailedDescription: "At Kapital & Connect, I'm developing sophisticated algorithms to automatically match startups with potential investors. This involves building machine learning models that analyze startup profiles, investor preferences, and market trends to create optimal matches. The system helps streamline the investment process by identifying the most promising connections between entrepreneurs and investors.",
+    detailedDescription: "At Schellinger Capital, I'm developing sophisticated algorithms to automatically match startups with potential investors. This involves building machine learning models that analyze startup profiles, investor preferences, and market trends to create optimal matches. The system helps streamline the investment process by identifying the most promising connections between entrepreneurs and investors.",
     tags: ["Copenhagen", "07/2025-Present", "ML Algorithms", "Fintech", "Startups"],
-    image: "/images/kapital.png",
+    image: "/images/schellinger.png",
   },
   {
     id: 6,
@@ -107,6 +132,15 @@ const workExperience = [
 ];
 
 const talks = [
+  {
+    id: 0,
+    title: "🏆 1st Place - Valhacks Hackathon",
+    description: "Won 1st place (4500 DKK) building a Spotify recommendation system evaluated on NDCG@5, performance (33x faster), and explainability.",
+    detailedDescription: "Secured 1st place in the Valhacks hackathon at Skylab in November 2025, winning a prize of 4500 DKK. The challenge was to implement a recommendation system for Spotify songs, evaluated on three metrics: NDCG@5 score (we achieved 0.3401), Performance (33x faster with caching, 3x without), and Explainability. Our solution comprised thorough feature engineering including manual data augmentation, careful preprocessing, latent representations using a VAE, efficient data storage in FAISS vector stores, and a fast searching algorithm with custom matching score combining cosine similarity and popularity.",
+    tags: ["Award", "Hackathon", "Recommendation Systems", "FAISS", "Nov 2025"],
+    image: "/images/valhacks.png",
+    link: "https://www.linkedin.com/feed/update/urn:li:activity:7403755889716953089",
+  },
   {
     id: 8,
     title: "Athens Tableau User Group",
@@ -280,9 +314,9 @@ const Portfolio = () => {
                 </p>
               </div>
               <a
-                href="/CV2025_Dimitris_Papantzikos.pdf"
+                href="/CV_Dimitris_Papantzikos.pdf"
                 className="hidden md:inline-flex items-center text-sm font-medium px-4 py-2 rounded-md border hover:bg-secondary transition-colors"
-                download
+                download="CV_Dimitris_Papantzikos.pdf"
               >
                 Download CV <ExternalLink className="ml-1 h-4 w-4" />
               </a>
@@ -302,9 +336,9 @@ const Portfolio = () => {
 
             <div className="mt-10 flex justify-center md:hidden">
               <a
-                href="/CV2025_Dimitris_Papantzikos.pdf"
+                href="/CV_Dimitris_Papantzikos.pdf"
                 className="inline-flex items-center text-sm font-medium px-4 py-2 rounded-md border hover:bg-secondary transition-colors"
-                download
+                download="CV_Dimitris_Papantzikos.pdf"
               >
                 Download CV <ExternalLink className="ml-1 h-4 w-4" />
               </a>
@@ -322,13 +356,13 @@ const Portfolio = () => {
             <div className="flex items-center justify-between mb-12">
               <div className="max-w-2xl">
                 <span className="badge bg-secondary text-secondary-foreground mb-4">
-                  Talks
+                  Talks & Awards
                 </span>
                 <h2 className="section-heading flex items-center">
-                  <Presentation className="mr-2 h-8 w-8" /> Sharing Knowledge
+                  <Presentation className="mr-2 h-8 w-8" /> Talks & Awards
                 </h2>
                 <p className="text-muted-foreground text-lg">
-                  Engaging with the community through talks and presentations.
+                  Engaging with the community through talks and celebrating achievements.
                 </p>
               </div>
             </div>
