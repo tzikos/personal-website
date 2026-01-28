@@ -1,50 +1,59 @@
-# My personal website
+# Personal Website
 
-## Project info
-```
-# Step 1: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 2: Install the necessary dependencies.
+## Quick Start
+```bash
 npm i
-
-# Step 3: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
 
-## What technologies are used for this project?
+## Tech Stack
+- Vite + React + TypeScript
+- shadcn-ui + Tailwind CSS
+- AWS Lambda (chatbot backend)
 
-This project is built with .
+## Architecture
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Frontend
+Deployed via [Render](https://render.com). Build: `npm i && npm run build`, Deploy: `npm run preview`
 
-## How can I deploy this project?
+### Chatbot Backend (AWS Lambda)
+The chatbot uses an AWS Lambda function that:
+- **System prompt is stored server-side** in `lambda/chat-handler.js`
+- Frontend only sends user/assistant messages (no prompt in network requests)
+- Includes rate limiting and TTS (ElevenLabs) support
 
-Go to [Render](https://render.com) and create a new project.
+**To update the chatbot prompt:**
+1. Edit `SYSTEM_PROMPT` in `lambda/chat-handler.js` (lines 7-186)
+2. Optionally sync `src/config/chatbot-prompt.ts` for reference
+3. Deploy to AWS (see below)
 
-Then make sure you specify the following:
-
+**To deploy Lambda:**
+```bash
+cd lambda
+./deploy.sh
+# Then upload chatbot-lambda.zip to AWS Lambda console
 ```
-# Build command
-npm i && npm run build
 
-# Deploy command
-npm run preview
+## Environment Variables
+
+### Frontend (.env)
+```
+VITE_SUPABASE_URL=<your_url>           # Contact form (optional)
+VITE_SUPABASE_ANON_KEY=<your_key>      # Contact form (optional)
+VITE_BACKEND_API_URL=<aws_api_url>     # AWS API Gateway URL
 ```
 
-## What environment variables are required?
-
-Make sure you have a .env file in your project folder with the following:
+### AWS Lambda
 ```
-VITE_SUPABASE_URL=<YOUR_VITE_SUPABASE_URL>
-VITE_SUPABASE_ANON_KEY=<YOUR_VITE_SUPABASE_ANON_KEY>
+OPENAI_API_KEY=<your_key>              # Required
+ELEVENLABS_API_KEY=<your_key>          # Required for TTS
 ```
-> Only needed if you want the contact form to send data to your Supabase instance.
 
-## Comments
+## Key Files
+| File | Purpose |
+|------|---------|
+| `lambda/chat-handler.js` | Lambda function with system prompt |
+| `src/services/backend-openai-service.ts` | Frontend chatbot service |
+| `src/config/chatbot-prompt.ts` | Prompt reference (not used at runtime) |
 
-Initial template was provided by lovable.dev, modifications were added by me afterwards.
+---
